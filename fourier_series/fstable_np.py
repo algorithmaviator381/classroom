@@ -54,5 +54,7 @@ def genrate_summations(tbl):
     return sum_tbl
 
 tbl = genreate_harmonic_analysis_table(x,y,3)
-
 coefficients = np.round(genrate_summations(tbl)/3,2)
+
+if __name__ == main():
+    main()

@@ -4,18 +4,18 @@
 #include <sstream>
 using namespace std;
 
-int evaluatePostfix(const string& postfix) {
+int evaluatePrefix(const string& prefix) {
     stack<int> operandStack;
-    istringstream iss(postfix);
+    istringstream iss(prefix);
     string token;
     
     while (iss >> token) {
         if (isdigit(token[0])) {
             operandStack.push(stoi(token));
         } else {
-            int operand2 = operandStack.top();
-            operandStack.pop();
             int operand1 = operandStack.top();
+            operandStack.pop();
+            int operand2 = operandStack.top();
             operandStack.pop();
             
             if (token == "+") {
@@ -34,10 +34,10 @@ int evaluatePostfix(const string& postfix) {
 }
 
 int main() {
-    string postfixExpression = "3 4 2 * +";
-    int result = evaluatePostfix(postfixExpression);
+    string prefixExpression = "+ 3 * 4 2";
+    int result = evaluatePrefix(prefixExpression);
     
-    cout << "Postfix Expression: " << postfixExpression << endl;
+    cout << "Prefix Expression: " << prefixExpression << endl;
     cout << "Result: " << result << endl;
     
     return 0;

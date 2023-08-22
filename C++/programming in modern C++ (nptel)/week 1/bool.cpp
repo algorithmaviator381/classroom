@@ -5,5 +5,9 @@ using namespace std;
 int main(){
     bool x = true;
 
-    cout<<"Bool X is "<<x;
+    if(x)
+        cout<<"True";
+    else{
+        cout<<"False";
+    }
 }

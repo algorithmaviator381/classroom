@@ -1,51 +1,46 @@
 #include <iostream>
-#include <vector> 
+#include <vector>
+#include <string>
 
-using namespace std;
+using namespace std;;
 
-class bookmysport{
-    private:
-        vector<string> services;
-        int cost;
-    
-    protected:
-        vector<string> techstack;
-        int staff;
-
+class startup{
     public:
-        bookmysport(){
-            services = {"Search_venue", "Book_venue", "Find_players"};
-            techstack = {"MongoDB", "FastAPI", "Firebase", "Python"};
-
-            cost=150000;
-            staff=130;
-        }
-
-        friend class investor;
+        string name = "book my sport";
+        vector<string> founders={"Aditya Godse", "Atharva Nawale", "Aditya Pawar"};
+    private:
+        vector<string> techstack={"MongoDB","FastAPI","ElasticSearch"};
+        int fundings = 0;
+    
+    friend class investor;
 };
 
-class investor {
+class investor{
     public:
-        void display(bookmysport& item){
+        void display(startup& obj){
+            
             cout<<"Private variables: \n";
-            cout<<"Cost: "<<item.cost<<endl;
-            for(int i=0; i<item.services.size(); i++){
-                cout<<item.services[i]<<" ";
+            cout<<"Name: "<<obj.name<<endl;
+            cout<<"Founders: \n";
+            for(int i=0;i<obj.founders.size();i++){
+                cout<<"-"<<obj.founders[i]<<endl;
             };
 
-            cout<<endl<<endl;
+            cout<<endl;
 
-            cout<<"Procted variables: \n";
-            cout<<"Staff: "<<item.staff<<endl;
-            for(int i=0; i<item.techstack.size(); i++){
-                cout<<item.techstack[i]<<" ";
+            cout<<"Protected variables: \n";
+            cout<<"Fundings: "<<obj.fundings<<endl;
+            cout<<"Tech Stack: \n";
+            for(int i=0;i<obj.techstack.size();i++){
+                cout<<"-"<<obj.techstack[i]<<endl;
             };
         };
 };
 
 int main(){
-    bookmysport employee;
-    investor aditya;
-    aditya.display(employee);
+    startup bookmysport;
+    investor angel;
+    angel.display(bookmysport);
+
     return 0;
 }

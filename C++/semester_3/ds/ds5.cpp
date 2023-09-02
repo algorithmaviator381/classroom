@@ -1,6 +1,5 @@
 #include <iostream>
 
-// Define a struct for the list node
 struct Node {
     int data;
     Node* next;

@@ -4,52 +4,41 @@
 
 using namespace std;
 
-class Animal {
+class GenericAnimal {
 public:
-    Animal(const string& name) : name(name) {}
-    virtual string makeSound() const = 0;
-    string getName() const { return name; }
+    GenericAnimal(const string& name, const string& sound)
+        : name(name), sound(sound) {}
+
+    string makeSound() const {
+        return sound;
+    }
+
+    string getName() const {
+        return name;
+    }
+
 private:
     string name;
-};
-
-class Cows : public Animal {
-public:
-    Cows() : Animal("cows") {}
-    string makeSound() const override {
-        return "moo";
-    }
-};
-
-class Chicks : public Animal {
-public:
-    Chicks() : Animal("chicks") {}
-    string makeSound() const override {
-        return "cluck";
-    }
-};
-
-class Pigs : public Animal {
-public:
-    Pigs() : Animal("pigs") {}
-    string makeSound() const override {
-        return "oink";
-    }
+    string sound;
 };
 
 int main() {
+    vector<GenericAnimal> farmAnimals;
     
-    vector<Animal*> farmAnimals = {new Cows(), new Chicks(), new Pigs()};
+    farmAnimals.emplace_back("Cows", "moo");
+    farmAnimals.emplace_back("Chicks", "cluck");
+    farmAnimals.emplace_back("Pigs", "oink");
+    farmAnimals.emplace_back("ducks","quack");
 
-    for (const Animal* animal : farmAnimals) {
+    for (const GenericAnimal& animal : farmAnimals) {
         cout << "Old MacDonald had a farm\n";
         cout << "Ee i ee i o\n";
-        cout << "And on his farm he had some " << animal->getName() << endl;
+        cout << "And on his farm he had some " << animal.getName() << endl;
         cout << "E-I-E-I-O!\n";
-        cout << "With a " << animal->makeSound() << "-" << animal->makeSound() << " here\n";
-        cout << "And a " << animal->makeSound() << "-" << animal->makeSound() << " there\n";
-        cout << "Here a " << animal->makeSound() << " there a " << animal->makeSound() << endl;
-        cout << "Everywhere " << animal->makeSound() << "-" << animal->makeSound() << endl << endl;
+        cout << "With a " << animal.makeSound() << "-" << animal.makeSound() << " here\n";
+        cout << "And a " << animal.makeSound() << "-" << animal.makeSound() << " there\n";
+        cout << "Here a " << animal.makeSound() << " there a " << animal.makeSound() << endl;
+        cout << "Everywhere " << animal.makeSound() << "-" << animal.makeSound() << endl << endl;
     }
 
     return 0;

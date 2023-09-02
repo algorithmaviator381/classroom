@@ -4,9 +4,9 @@
 
 using namespace std;
 
-class GenericAnimal {
+class FarmAnimals {
 public:
-    GenericAnimal(const string& name, const string& sound)
+    FarmAnimals(const string& name, const string& sound)
         : name(name), sound(sound) {}
 
     string makeSound() const {
@@ -23,14 +23,14 @@ private:
 };
 
 int main() {
-    vector<GenericAnimal> farmAnimals;
+    vector<FarmAnimals> animal;
     
-    farmAnimals.emplace_back("Cows", "moo");
-    farmAnimals.emplace_back("Chicks", "cluck");
-    farmAnimals.emplace_back("Pigs", "oink");
-    farmAnimals.emplace_back("ducks","quack");
+    animal.emplace_back("Cows", "moo");
+    animal.emplace_back("Chicks", "cluck");
+    animal.emplace_back("Pigs", "oink");
+    animal.emplace_back("ducks","quack");
 
-    for (const GenericAnimal& animal : farmAnimals) {
+    for (const FarmAnimals& animal : animal) {
         cout << "Old MacDonald had a farm\n";
         cout << "Ee i ee i o\n";
         cout << "And on his farm he had some " << animal.getName() << endl;

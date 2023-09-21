@@ -13,7 +13,6 @@ public:
         head = nullptr;
     }
 
-    // Function to insert an element into the list
     void insert(int value) {
         Node* newNode = new Node();
         newNode->data = value;
@@ -21,7 +20,6 @@ public:
         head = newNode;
     }
 
-    // Function to delete an element from the list
     void deleteElement(int value) {
         Node* current = head;
         Node* prev = nullptr;
@@ -46,7 +44,6 @@ public:
         std::cout << "Element " << value << " deleted from the list." << std::endl;
     }
 
-    // Function to search for a key element in the list and count nodes
     int searchAndCount(int key) {
         Node* current = head;
         int count = 0;

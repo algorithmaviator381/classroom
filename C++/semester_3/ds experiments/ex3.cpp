@@ -72,7 +72,7 @@ public:
         }
     }
 
-    void display() {
+    void transvalsal() {
     struct Node* ptr;
     ptr = head;
     while (ptr != NULL) {
@@ -80,72 +80,7 @@ public:
         ptr = ptr->next;
         }   
     }
-
 };
-
-
-// class List {
-// public:
-//     Node* head;
-//     List() {
-//         head = nullptr;
-//     }
-//     int size=0;
-
-//     void insert(int value) {
-//         Node* newNode = new Node;
-//         newNode->data = value;
-//         newNode->next = nullptr;
-
-//         if (head == nullptr) {
-//             head = newNode;
-//         } else {
-//             Node* current = head;
-//             while (current->next != nullptr) {
-//                 current = current->next;
-//             }
-//             current->next = newNode;
-//             size++;
-//         }
-//     }
-
-//     void remove(int value) {
-//         if (head == nullptr) {
-//             return;
-//         }
-
-//         if (head->data == value) {
-//             Node* temp = head;
-//             head = head->next;
-//             delete temp;
-//             return;
-//         }
-
-//         Node* current = head;
-//         while (current->next != nullptr && current->next->data != value) {
-//             current = current->next;
-//         }
-
-//         if (current->next != nullptr) {
-//             Node* temp = current->next;
-//             current->next = current->next->next;
-//             delete temp;
-//         }
-//     }
-
-
-//     int searchAndCount(int key) {
-//         int count = 0;
-//         Node* current = head;
-//         while (current != nullptr) {
-//             if (current->data == key) {
-//                 count++;
-//             }
-//             current = current->next;
-//         }
-//         return count;
-//     }
-// };
 
 int main() {
 
@@ -156,5 +91,5 @@ int main() {
     }
 
     mylist.insert(78);
-    mylist.display();
+    mylist.transvalsal();
 }

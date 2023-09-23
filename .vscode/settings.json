@@ -1,6 +1,9 @@
 {
     "files.associations": {
         "stdlib.h": "c",
-        "typeindex": "cpp"
-    }
+        "typeindex": "cpp",
+        "new": "cpp",
+        "algorithm": "cpp"
+    },
+    "python.analysis.typeCheckingMode": "off"
 }

@@ -1,33 +1,41 @@
 class SortingAlgorithms:
 
     def BubbleSort(self, arr):
+        if len(arr) <= 1:
+            return arr
+
         length = len(arr)
 
-        for i in range(length - 1):
+        for i in range(length):
             swapped = False
-            for j in range(length - 1 - i):
+            for j in range(length - i - 1):
                 if arr[j] > arr[j + 1]:
                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
                     swapped = True
             if not swapped:
                 break
-
         return arr
 
     def InsertionSort(self, arr):
+        if len(arr) <= 1:
+            return arr
+
         length = len(arr)
 
         for i in range(1, length):
-            key = arr[i]
-            j = i - 1
-            while j >= 0 and arr[j] > key:
-                arr[j + 1] = arr[j]
-                j -= 1
-            arr[j + 1] = key
+            current = arr[i]
+            j=i-1
+            while(j>=0 and arr[j]>current):
+                arr[j+1] = arr[j]
+                j-=1
+            arr[j+1] = current
 
         return arr
     
     def SelectionSort(self, arr):
+        if len(arr) <= 1:
+            return arr
+
         length = len(arr)
 
         for i in range(length - 1):
@@ -37,17 +45,23 @@ class SortingAlgorithms:
         return arr
     
     def QuickSort(self, arr):
+        length = len(arr)
+
+        if length <=1:
+            return arr
+        
+        pivot = arr[length//2]
+        middle = [x for x in arr if x==pivot]
+        left = [x for x in arr if x<pivot]
+        right = [x for x in arr if x>pivot]
+
+        arr = self.QuickSort(left) + middle + self.QuickSort(right)
+        return arr
+    
+    def mergeSort(self, arr):
         if len(arr) <= 1:
             return arr
 
-        pivot = arr[len(arr) // 2]  # Choose a pivot element
-        left = [x for x in arr if x < pivot]
-        middle = [x for x in arr if x == pivot]
-        right = [x for x in arr if x > pivot]
-
-        return self.QuickSort(left) + middle + self.QuickSort(right)
-    
-    def mergeSort(self, arr):
         if len(arr) > 1:
             mid = len(arr) // 2  # Find the middle of the array
             left_half = arr[:mid]  # Split the array into two halves
@@ -80,6 +94,9 @@ class SortingAlgorithms:
         return arr
     
     def HeapSort(self, arr):
+        if len(arr) <= 1:
+            return arr
+
         return arr
 
 
@@ -91,8 +108,8 @@ def main():
     # print(sort.BubbleSort(arr))       #passed
     # print(sort.InsertionSort(arr))    #passed
     # print(sort.SelectionSort(arr))    #passed
-    # print(sort.QuickSort(arr))        #passed
-    print(sort.mergeSort(arr))
+    print(sort.QuickSort(arr))        #passed
+    # print(sort.mergeSort(arr))
 
 if __name__ == '__main__':
     main()

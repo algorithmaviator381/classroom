@@ -193,6 +193,7 @@ int main() {
 
             default:
                 std::cout << "Invalid Input! Enter a number from 0 to 5." << std::endl;
+                getch();
         }
     }
 

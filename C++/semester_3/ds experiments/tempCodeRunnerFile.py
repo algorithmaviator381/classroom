@@ -1,5 +1,3 @@
-
-        for i in range(length):
-            for j in range(i+1, length):
-                if(arr[i] > arr[j]):
-                    arr[i], arr[j] = arr[j], arr[i]
+,
+                    [4, 5, 6],
+                    [7, 8, 9]]

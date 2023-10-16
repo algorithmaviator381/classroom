@@ -35,7 +35,6 @@ public:
         }
         cout << endl;
     }
-
     // Add more methods like insertAtEnd, delete, search, etc. as needed
 };
 

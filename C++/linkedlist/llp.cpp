@@ -37,33 +37,63 @@ namespace ll
 
         void insertAtStart(const T &data)
         {
-            singleNode<T> *newsinglenode = new singleNode<T>(data);
-            newsinglenode->next = head;
-            head = newsinglenode;
+            singleNode<T> *newSingleNode = new singleNode<T>(data);
+            newSingleNode->next = head;
+            head = newSingleNode;
         }
 
         void insertAtEnd(const T &data)
         {
-            singleNode<T> *newsinglenode = new singleNode<T>(data);
+            singleNode<T> *newSingleNode = new singleNode<T>(data);
+
             if (head == nullptr)
             {
-                head = newsinglenode;
+                head = newSingleNode;
             }
             else
             {
                 singleNode<T> *current = head;
+
                 while (current->next != nullptr)
                 {
                     current = current->next;
                 }
-                current->next = newsinglenode;
+
+                current->next = newSingleNode;
             }
+        }
+
+        void insertafter(const T &index, const T &data)
+        {
+            singleNode<T> *newnode = new singleNode<T>(data);
+            singleNode<T> *current = head;
+
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return;
+            }
+
+            while (current != nullptr)
+            {
+                if (current->data == index)
+                {
+                    newnode->next = current->next;
+                    current->next = newnode;
+                    return;
+                }
+                current = current->next;
+            }
+
+            cout << "The element " << index << " is not present in the list" << endl;
         }
 
         int length()
         {
             int count = 0;
+
             singleNode<T> *current = head;
+
             while (current != nullptr)
             {
                 count++;
@@ -147,18 +177,11 @@ namespace ll
 
 int main()
 {
-    // ll::singleLinkedList<std::string> slst;
-    // slst.insertAtEnd("Aditya");
-    // slst.insertAtEnd("Godse");
-    // slst.displaylist();
+    ll::singleLinkedList<std::string> slst;
+    slst.insertAtStart("Aditya");
+    slst.insertAtEnd("Godse");
+    slst.insertafter("Aditya", "Pradip");
+    slst.displaylist();
 
-    // cout << "Length of list: " << slst.length();
-
-    ll::doubleLinkedList<int> dll;
-
-    dll.insertAtStart(32);
-    dll.insertAtStart(68);
-    dll.insertAtStart(11);
-    dll.displaylist();
-    cout<<dll.length();
+    cout << "Length of list: " << slst.length();
 }

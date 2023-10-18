@@ -5,11 +5,11 @@ class SearchAlgorithm {
 public:
     static int LinearSearchRecursive(const T arr[], const T& searchElement, int startIndex, int endIndex) {
         if (startIndex > endIndex) {
-            return -1; // Element not found
+            return -1;
         }
 
         if (arr[startIndex] == searchElement) {
-            return startIndex; // Element found at the current index
+            return startIndex;
         }
 
         return LinearSearchRecursive(arr, searchElement, startIndex + 1, endIndex);
@@ -45,6 +45,5 @@ int main() {
         std::cout << "Element not found." << std::endl;
     }
 
-    delete[] arr;  // Deallocate dynamic array memory
     return 0;
 }

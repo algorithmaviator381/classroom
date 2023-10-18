@@ -6,17 +6,17 @@ using namespace std;
 
 int main(){
     
-    stack<int> mystack;
+    stack<int> myStack;
 
-    mystack.push(1);
-    mystack.push(0);
-    mystack.push(5);
-    mystack.push(6);
-    mystack.push(31);
+    myStack.push(1);
+    myStack.push(0);
+    myStack.push(5);
+    myStack.push(6);
+    myStack.push(31);
 
-    while(!mystack.empty()){
-        cout<<mystack.top()<<endl;
-        mystack.pop();
+    while(!myStack.empty()){
+        cout<<myStack.top()<<endl;
+        myStack.pop();
     }
     
     return 0;

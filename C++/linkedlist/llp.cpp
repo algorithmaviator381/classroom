@@ -4,6 +4,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
 
 template <typename T>
 struct singleNode
@@ -103,6 +104,39 @@ namespace ll
             return count;
         }
 
+        void deleteNode(const T &data)
+        {
+            if (head == nullptr)
+            {
+                cout << "List is empty, cannot delete" << endl;
+                return;
+            }
+
+            if (head->data == data)
+            {
+                singleNode<T> *temp = head;
+                head = head->next;
+                delete temp;
+                return;
+            }
+
+            singleNode<T> *current = head;
+            while (current->next != nullptr)
+            {
+                if (current->next->data == data)
+                {
+                    singleNode<T> *temp = current->next;
+                    current->next = current->next->next;
+                    delete temp;
+                    return;
+                }
+
+                current = current->next;
+            }
+
+            cout << "Element " << data << " not found in the list. Deletion failed." << endl;
+        }
+
         void displaylist()
         {
             singleNode<T> *current = head;
@@ -112,6 +146,10 @@ namespace ll
                 {
                     cout << current->data << " ";
                     current = current->next;
+                    if (current != nullptr)
+                    {
+                        cout << " -> ";
+                    }
                 }
                 cout << endl;
             }
@@ -119,6 +157,47 @@ namespace ll
             {
                 cout << "List is empty" << endl;
             }
+        }
+
+        bool search(const T &data)
+        {
+
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return false;
+            }
+
+            singleNode<T> *current = head;
+
+            while (current != nullptr)
+            {
+                if (current->data == data)
+                {
+                    return true;
+                }
+
+                current = current->next;
+            }
+
+            return false;
+        }
+
+        void reverse()
+        {
+            singleNode<T> *previous = nullptr;
+            singleNode<T> *current = head;
+            singleNode<T> *m_next = nullptr;
+
+            while (current != nullptr)
+            {
+                m_next = current->next;
+                current->next = previous;
+                previous = current;
+                current = m_next;
+            }
+
+            head = previous;
         }
     };
 
@@ -142,6 +221,28 @@ namespace ll
             head = newNode;
         }
 
+        void insertAtEnd(const T &data)
+        {
+            doubleNode<T> *newnode = new doubleNode<T>(data);
+
+            if (head == nullptr)
+            {
+                head = newnode;
+            }
+            else
+            {
+                doubleNode<T> *current = head;
+
+                while (current->next != nullptr)
+                {
+                    current = current->next;
+                }
+
+                current->next = newnode;
+                newnode->previous = current;
+            }
+        }
+
         int length()
         {
             int count = 0;
@@ -155,6 +256,20 @@ namespace ll
             return count;
         }
 
+        void reverse(){
+            doubleNode<T> *current = head;
+            doubleNode<T> *temp = nullptr;
+
+            while(current != nullptr){
+                temp = current->next;
+                current->next = current->previous;
+                current->previous = temp;
+
+                current = temp;
+            }
+            head = temp;
+        }
+        
         void displaylist()
         {
             doubleNode<T> *current = head;
@@ -164,6 +279,10 @@ namespace ll
                 {
                     cout << current->data << " ";
                     current = current->next;
+                    if (current != nullptr)
+                    {
+                        cout << " <->  ";
+                    }
                 }
                 cout << endl;
             }
@@ -175,13 +294,33 @@ namespace ll
     };
 }
 
-int main()
+void sampleSingleLinkedListImplementation()
 {
-    ll::singleLinkedList<std::string> slst;
+    ll::singleLinkedList<string> slst;
     slst.insertAtStart("Aditya");
     slst.insertAtEnd("Godse");
     slst.insertafter("Aditya", "Pradip");
+    slst.insertAtStart("Mr");
+    slst.deleteNode("Mr");
+    // slst.reverse();
     slst.displaylist();
 
-    cout << "Length of list: " << slst.length();
+    if (slst.search("Aditya"))
+    {
+        cout << "Length of list: " << slst.length();
+    }
+}
+
+int main()
+{
+    // sampleSingleLinkedListImplementation();
+
+    ll::doubleLinkedList<int> dll;
+    dll.insertAtStart(5);
+    dll.insertAtStart(2);
+    dll.insertAtStart(77);
+    dll.insertAtEnd(10000);
+    dll.reverse();
+    dll.displaylist();
+    cout << "Length: " << dll.length() << endl;
 }

@@ -1,8 +1,5 @@
 #include <iostream>
-#include <map>
 #include <string>
-#include <stdexcept>
-#include <limits>
 #include <conio.h>
 
 using std::cin;
@@ -409,15 +406,25 @@ public:
         cout << "--------------------------------------------------------" << endl;
     }
 
-    int user_ip()
+    int user_ip(const int min, const int max)
     {
 
         int choice;
+        
         cout << endl
              << "--------------------------------------------------------" << endl;
         cout << "Your choice: ";
         cin >> choice;
 
+        if(choice>=min && choice<= max){
+            return choice;
+        }else{
+            cout<< "Invalid choice. ";
+            cout<< "Input must be in range of "<< min <<" and "<< max <<endl;
+            cout<< "Press any key to continue...";
+            getch();
+            user_ip(min, max);
+        }
         return choice;
     }
 
@@ -425,10 +432,11 @@ public:
     {
         int choice;
 
+        
         cout << "1> Create a singly linked list" << endl;
         cout << "2> Create a doubly linked list" << endl;
 
-        return user_ip();
+        return user_ip(1,2);
     }
 
     int d_type()
@@ -442,7 +450,7 @@ public:
         cout << "3> Character linked list" << endl;
         cout << "4> string linked list" << endl;
 
-        return user_ip();
+        return user_ip(1,4);
     }
 
     int operation()
@@ -460,7 +468,7 @@ public:
 
         cout << "0> Exit" << endl;
 
-        return user_ip();
+        return user_ip(0,8);
     }
 };
 
@@ -712,7 +720,7 @@ int main()
     system("cls");
 
     program.portal();
-    cout<<"Press any key to continue...";
+    cout << "Press any key to continue...";
     getch();
     program.portal();
     list_profile = program.init();

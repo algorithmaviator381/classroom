@@ -30,7 +30,7 @@ namespace ll
     template <typename T>
     class singleLinkedList
     {
-    private:
+    public:
         singleNode<T> *head;
 
     public:
@@ -204,7 +204,7 @@ namespace ll
     template <typename T>
     class doubleLinkedList
     {
-    private:
+    protected:
         doubleNode<T> *head;
 
     public:
@@ -243,6 +243,32 @@ namespace ll
             }
         }
 
+        void insertAfter(const T &index, const T &data)
+        {
+            doubleNode<T> *newnode = new doubleNode<T>(data);
+            doubleNode<T> *current = head;
+
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return;
+            }
+
+            while (current != nullptr)
+            {
+                if (current->data == index)
+                {
+                    newnode->next = current->next;
+                    newnode->previous = current;
+                    current->next = newnode;
+                    return;
+                }
+                current = current->next;
+            }
+
+            cout << "Element " << index << " not found in list" << endl;
+        }
+
         int length()
         {
             int count = 0;
@@ -260,16 +286,47 @@ namespace ll
             doubleNode<T> *current = head;
             doubleNode<T> *temp = nullptr;
 
-            while(current != nullptr){
-                temp = current->next;
-                current->next = current->previous;
-                current->previous = temp;
+            while (current != nullptr)
+            {
+                // Swap the previous and next pointers of the current node
+                temp = current->previous;
+                current->previous = current->next;
+                current->next = temp;
 
-                current = temp;
+                // Move to the next node
+                current = current->previous;
             }
-            head = temp;
+
+            if (temp != nullptr)
+            {
+                head = temp->previous;
+            }
         }
-        
+
+        bool search(const T &data)
+        {
+
+            if (head == nullptr)
+            {
+                cout << "List is empty!" << endl;
+                return false;
+            }
+
+            doubleNode<T> *current = head;
+
+            while (current != nullptr)
+            {
+                if (current->data == data)
+                {
+                    return true;
+                }
+
+                current = current->next;
+            }
+
+            return false;
+        }
+
         void displaylist()
         {
             doubleNode<T> *current = head;
@@ -307,20 +364,34 @@ void sampleSingleLinkedListImplementation()
 
     if (slst.search("Aditya"))
     {
-        cout << "Length of list: " << slst.length();
+        cout << "Length of list: " << slst.length()<<endl;
     }
+
+    cout<< slst.head->data;
 }
 
-int main()
-{
-    // sampleSingleLinkedListImplementation();
 
+void sampleDoubleLinkedListImplementation()
+{
     ll::doubleLinkedList<int> dll;
     dll.insertAtStart(5);
     dll.insertAtStart(2);
     dll.insertAtStart(77);
     dll.insertAtEnd(10000);
     dll.reverse();
+
+    if (dll.search(2))
+    {
+        dll.insertAfter(2, 11);
+    }
     dll.displaylist();
     cout << "Length: " << dll.length() << endl;
+}
+
+int main()
+{
+    sampleSingleLinkedListImplementation();
+    // sampleDoubleLinkedListImplementation();
+
+    
 }

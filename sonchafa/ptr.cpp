@@ -16,4 +16,7 @@ int main()
     {
         cout << arr[i] << "\t" << &arr[i] << endl;
     }
+
+    cout<<*ptr;
+
 }

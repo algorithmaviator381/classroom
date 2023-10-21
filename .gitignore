@@ -1,3 +1,6 @@
 classroom
 *.exe
 *.vscode
+*tempCodeRunnerFile.py
+*data-checkpoint.ipynb
+*tempCodeRunnerFile.cpp

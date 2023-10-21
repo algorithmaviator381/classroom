@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <conio.h>
+#include <typeinfo>
+#include <sstream>
 
 using std::cin;
 using std::cout;
@@ -26,16 +28,37 @@ struct doubleNode
     doubleNode(const T value) : previous(nullptr), next(nullptr), data(value) {}
 };
 
+template <typename T>
+struct circularNode
+{
+    T data;
+    circularNode *next;
+
+    circularNode(const T value) : data(value), next(nullptr) {}
+};
+
 namespace ll
 {
     template <typename T>
     class singleLinkedList
     {
-    public:
+    private:
         singleNode<T> *head;
 
     public:
         singleLinkedList() : head(nullptr) {}
+
+        bool is_empty()
+        {
+            if (head == nullptr)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         void insertAtStart(const T &data)
         {
@@ -143,6 +166,7 @@ namespace ll
             singleNode<T> *current = head;
             if (length() != 0)
             {
+                cout << "(Head)-> ";
                 while (current != nullptr)
                 {
                     cout << current->data << " ";
@@ -152,6 +176,7 @@ namespace ll
                         cout << " -> ";
                     }
                 }
+                cout << "->(tail)";
                 cout << endl;
             }
             else
@@ -210,6 +235,18 @@ namespace ll
 
     public:
         doubleLinkedList() : head(nullptr) {}
+
+        bool is_empty()
+        {
+            if (head == nullptr)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         void insertAtStart(const T &data)
         {
@@ -368,6 +405,7 @@ namespace ll
             doubleNode<T> *current = head;
             if (length() != 0)
             {
+                cout << "(head)<->  ";
                 while (current != nullptr)
                 {
                     cout << current->data << " ";
@@ -377,6 +415,7 @@ namespace ll
                         cout << " <->  ";
                     }
                 }
+                cout << "<->(tail)";
                 cout << endl;
             }
             else
@@ -385,6 +424,218 @@ namespace ll
             }
         }
     };
+
+    template <typename T>
+    class singleCircularLinkedList
+    {
+    private:
+        circularNode<T> *head;
+
+    public:
+        singleCircularLinkedList() : head(nullptr) {}
+
+        bool is_empty()
+        {
+            return head == nullptr;
+        }
+
+        void insertAtStart(const T &data)
+        {
+            circularNode<T> *newSingleNode = new circularNode<T>(data);
+            if (head == nullptr)
+            {
+                newSingleNode->next = newSingleNode;
+                head = newSingleNode;
+            }
+            else
+            {
+                circularNode<T> *temp = head;
+                while (temp->next != head)
+                {
+                    temp = temp->next;
+                }
+                temp->next = newSingleNode;
+                newSingleNode->next = head;
+                head = newSingleNode;
+            }
+        }
+
+        void insertAtEnd(const T &data)
+        {
+            circularNode<T> *newSingleNode = new circularNode<T>(data);
+
+            if (head == nullptr)
+            {
+                newSingleNode->next = newSingleNode;
+                head = newSingleNode;
+            }
+            else
+            {
+                circularNode<T> *temp = head;
+                while (temp->next != head)
+                {
+                    temp = temp->next;
+                }
+                temp->next = newSingleNode;
+                newSingleNode->next = head;
+            }
+        }
+
+        void insertafter(const T &index, const T &data)
+        {
+            circularNode<T> *newnode = new circularNode<T>(data);
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return;
+            }
+
+            circularNode<T> *current = head;
+
+            do
+            {
+                if (current->data == index)
+                {
+                    newnode->next = current->next;
+                    current->next = newnode;
+                    return;
+                }
+                current = current->next;
+            } while (current != head);
+
+            cout << "The element " << index << " is not present in the list" << endl;
+        }
+
+        int length()
+        {
+            int count = 0;
+            circularNode<T> *current = head;
+
+            if (head == nullptr)
+            {
+                return count;
+            }
+
+            do
+            {
+                count++;
+                current = current->next;
+            } while (current != head);
+
+            return count;
+        }
+
+        void deleteNode(const T &data)
+        {
+            if (head == nullptr)
+            {
+                cout << "List is empty, cannot delete" << endl;
+                return;
+            }
+
+            if (head->data == data)
+            {
+                circularNode<T> *temp = head;
+                if (head->next == head)
+                {
+                    head = nullptr;
+                }
+                else
+                {
+                    circularNode<T> *current = head;
+                    while (current->next != head)
+                    {
+                        current = current->next;
+                    }
+                    head = head->next;
+                    current->next = head;
+                }
+                delete temp;
+                return;
+            }
+
+            circularNode<T> *current = head;
+            while (current->next != head)
+            {
+                if (current->next->data == data)
+                {
+                    circularNode<T> *temp = current->next;
+                    current->next = current->next->next;
+                    delete temp;
+                    return;
+                }
+                current = current->next;
+            }
+
+            cout << "Element " << data << " not found in the list. Deletion failed." << endl;
+        }
+
+        void displaylist()
+        {
+            circularNode<T> *current = head;
+
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return;
+            }
+
+            do
+            {
+                cout << current->data << " -> ";
+                current = current->next;
+            } while (current != head);
+
+            cout << " (Head)" << endl;
+        }
+
+        bool search(const T &data)
+        {
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return false;
+            }
+
+            circularNode<T> *current = head;
+
+            do
+            {
+                if (current->data == data)
+                {
+                    return true;
+                }
+                current = current->next;
+            } while (current != head);
+
+            return false;
+        }
+
+        void reverse()
+        {
+            if (head == nullptr)
+            {
+                cout << "List is empty" << endl;
+                return;
+            }
+
+            circularNode<T> *prev = nullptr;
+            circularNode<T> *current = head;
+            circularNode<T> *next = nullptr;
+
+            do
+            {
+                next = current->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+            } while (current != head);
+
+            head->next = prev;
+            head = prev;
+        }
+    };
+
 }
 
 class menu
@@ -406,37 +657,40 @@ public:
         cout << "--------------------------------------------------------" << endl;
     }
 
-    int user_ip(const int min, const int max)
+    int user_ip(int min, int max)
     {
-
         int choice;
-        
+
         cout << endl
              << "--------------------------------------------------------" << endl;
         cout << "Your choice: ";
-        cin >> choice;
 
-        if(choice>=min && choice<= max){
-            return choice;
-        }else{
-            cout<< "Invalid choice. ";
-            cout<< "Input must be in range of "<< min <<" and "<< max <<endl;
-            cout<< "Press any key to continue...";
-            getch();
-            user_ip(min, max);
+        while (true)
+        {
+            cin >> choice;
+
+            if (choice >= min && choice <= max)
+            {
+                return choice;
+            }
+            else
+            {
+                cout << "Invalid choice. ";
+                cout << "Input must be in the range of " << min << " and " << max << endl;
+                cout << "Your choice: ";
+            }
         }
-        return choice;
     }
 
     int init()
     {
         int choice;
 
-        
         cout << "1> Create a singly linked list" << endl;
         cout << "2> Create a doubly linked list" << endl;
+        cout << "3> Create a circular singly linked list" << endl;
 
-        return user_ip(1,2);
+        return user_ip(1, 3);
     }
 
     int d_type()
@@ -450,7 +704,7 @@ public:
         cout << "3> Character linked list" << endl;
         cout << "4> string linked list" << endl;
 
-        return user_ip(1,4);
+        return user_ip(1, 4);
     }
 
     int operation()
@@ -468,127 +722,224 @@ public:
 
         cout << "0> Exit" << endl;
 
-        return user_ip(0,8);
+        return user_ip(0, 8);
     }
 };
 
-template <typename T>
-void single_list_life(ll::singleLinkedList<T> &userlist)
+class inputValidations
 {
-    menu program;
-    bool lifespan = true;
+public:
+    bool validate(int flag, const void *data)
+    {
+        if (flag < 1 || flag > 4)
+        {
+            std::cout << "Invalid flag. Please use a flag between 1 and 4." << std::endl;
+            return false;
+        }
+
+        switch (flag)
+        {
+        case 1: // Integer
+            if (isInteger(*static_cast<const std::string *>(data)))
+            {
+                return true;
+            }
+            break;
+        case 2: // Float
+            if (isFloat(*static_cast<const std::string *>(data)))
+            {
+                return true;
+            }
+            break;
+        case 3: // Char
+            if (isChar(*static_cast<const std::string *>(data)))
+            {
+                return true;
+            }
+            break;
+        case 4: // String
+            if (isString(*static_cast<const std::string *>(data)))
+            {
+                return true;
+            }
+            break;
+        }
+
+        return false;
+    }
+
+    // Function to check if a string can be converted to an integer.
+    bool isInteger(const std::string &str)
+    {
+        std::istringstream ss(str);
+        int value;
+        return (ss >> value) && ss.eof();
+    }
+
+    // Function to check if a string can be converted to a float.
+    bool isFloat(const std::string &str)
+    {
+        std::istringstream ss(str);
+        float value;
+        return (ss >> value) && ss.eof();
+    }
+
+    // Function to check if a string contains a single character.
+    bool isChar(const std::string &str)
+    {
+        return str.length() == 1;
+    }
+
+    // Function to check if the input is a string.
+    bool isString(const std::string &str)
+    {
+        return true;
+    }
+};
+
+template <typename T, typename ListType>
+bool choiceOperations(ListType &userlist, int choice)
+{
     T data, index;
 
-    while (lifespan)
+    switch (choice)
     {
-        menu program;
-        program.header();
-
-        int choice = program.operation();
-
+    case 1:
+        cout << "Enter the data to insert at the beginning: ";
+        cin >> data;
+        userlist.insertAtStart(data);
+        cout << "\n\nYour List: " << endl;
+        userlist.displaylist();
+        getch();
         system("cls");
-        switch (choice)
+        return true;
+        break;
+
+    case 2:
+        cout << "Enter the data to insert at the end: ";
+        cin >> data;
+        userlist.insertAtEnd(data);
+        cout << "\n\nYour List: " << endl;
+        userlist.displaylist();
+        getch();
+        system("cls");
+        return true;
+        break;
+
+    case 3:
+
+        if (userlist.is_empty())
         {
-        case 1:
-
-            cout << "Enter the data to insert at the beginning: ";
-            cin >> data;
-            userlist.insertAtStart(data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
+            cout << "The list is empty, add elements to do this operation" << endl;
             getch();
-            system("cls");
             break;
+            return true;
+        }
+        else
+        {
 
-        case 2:
-            cout << "Enter the data to insert at the end: ";
-            cin >> data;
-            userlist.insertAtEnd(data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 3:
             cout << "Enter the element after which you want to insert another element: ";
             cin >> index;
             cout << "Enter data to insert: ";
             cin >> data;
             userlist.insertafter(index, data);
-            cout << "\nYour List: " << endl;
+            cout << "\n\nYour List: " << endl;
             userlist.displaylist();
             getch();
             system("cls");
-            break;
-
-        case 4:
-            cout << "Enter the element to delete from the list: ";
-            cin >> data;
-            userlist.deleteNode(data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 5:
-            cout << "The list contains " << userlist.length() << " elements.";
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 6:
-            userlist.reverse();
-            cout << "\nYour List after reversing: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 7:
-            cout << "Enter the element to search in the list: ";
-            cin >> data;
-
-            if (userlist.search(data))
-            {
-                cout << "Element found in the list";
-            }
-            else
-            {
-                cout << "Element not found in the list";
-            }
-
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 8:
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 0:
-            lifespan = false;
-            cout << "Exiting the application. Press any key to close window\n";
-            getch();
-            system("cls");
-            break;
-
-        default:
+            return true;
             break;
         }
+
+    case 4:
+        cout << "Enter the element to delete from the list: ";
+        cin >> data;
+        userlist.deleteNode(data);
+        cout << "\n\nYour List: " << endl;
+        userlist.displaylist();
+        getch();
+        system("cls");
+        return true;
+        break;
+
+    case 5:
+        cout << "The list contains " << userlist.length() << " elements.";
+        cout << "\n\nYour List: " << endl;
+        userlist.displaylist();
+        getch();
+        system("cls");
+        break;
+
+    case 6:
+        userlist.displaylist();
+        userlist.reverse();
+        cout << "\nYour List after reversing: " << endl;
+        userlist.displaylist();
+        getch();
+        system("cls");
+        return true;
+        break;
+
+    case 7:
+        cout << "Enter the element to search in the list: ";
+        cin >> data;
+
+        if (userlist.search(data))
+        {
+            cout << "Element found in the list";
+        }
+        else
+        {
+            cout << "Element not found in the list";
+        }
+
+        cout << "\n\nYour List: " << endl;
+        userlist.displaylist();
+        getch();
+        system("cls");
+        return true;
+        break;
+
+    case 8:
+        cout << "\n\nYour List: " << endl;
+        userlist.displaylist();
+        getch();
+        system("cls");
+        return true;
+        break;
+
+    case 0:
+        // lifespan = false;
+        cout << "Exiting the application. Press any key to close window\n";
+        cout << "\n\nMade with <3 by Aditya Godse";
+        getch();
+        system("cls");
+        return false;
+        break;
+
+    default:
+        break;
     }
 }
 
 template <typename T>
-void double_list_life(ll::doubleLinkedList<T> &userlist)
+void single_list_life(ll::singleLinkedList<T> &userlist, int data_type = 1)
+{
+    menu program;
+    bool lifespan = true;
+
+    while (lifespan)
+    {
+        program.header();
+        int choice = program.operation();
+        system("cls");
+
+        lifespan = choiceOperations<T, ll::singleLinkedList<T>>(userlist, choice); // Explicitly specify the template parameters here
+    }
+}
+
+template <typename T>
+void double_list_life(ll::doubleLinkedList<T> &userlist, int data_type = 1)
 {
     menu program;
     bool lifespan = true;
@@ -598,107 +949,28 @@ void double_list_life(ll::doubleLinkedList<T> &userlist)
     {
         menu program;
         program.header();
-
         int choice = program.operation();
-
         system("cls");
-        switch (choice)
-        {
-        case 1:
 
-            cout << "Enter the data to insert at the beginning: ";
-            cin >> data;
-            userlist.insertAtStart(data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
+        lifespan = choiceOperations<T, ll::doubleLinkedList<T>>(userlist, choice);
+    }
+}
 
-        case 2:
-            cout << "Enter the data to insert at the end: ";
-            cin >> data;
-            userlist.insertAtEnd(data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
+template <typename T>
+void single_circular_linked_list_life(ll::singleCircularLinkedList<T> &userlist, int data_type = 1)
+{
+    menu program;
+    bool lifespan = true;
+    T data, index;
+    inputValidations validator;
 
-        case 3:
-            cout << "Enter the element after which you want to insert another element: ";
-            cin >> index;
-            cout << "Enter data to insert: ";
-            cin >> data;
-            userlist.insertafter(index, data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
+    while (lifespan)
+    {
+        program.header();
+        int choice = program.operation();
+        system("cls");
 
-        case 4:
-            cout << "Enter the element to delete from the list: ";
-            cin >> data;
-            userlist.deleteNode(data);
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 5:
-            cout << "The list contains " << userlist.length() << " elements.";
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 6:
-            userlist.reverse();
-            cout << "\nYour List after reversing: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 7:
-            cout << "Enter the element to search in the list: ";
-            cin >> data;
-
-            if (userlist.search(data))
-            {
-                cout << "Element found in the list";
-            }
-            else
-            {
-                cout << "Element not found in the list";
-            }
-
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 8:
-            cout << "\nYour List: " << endl;
-            userlist.displaylist();
-            getch();
-            system("cls");
-            break;
-
-        case 0:
-            lifespan = false;
-            cout << "Exiting the application. Press any key to close window\n";
-            getch();
-            system("cls");
-            break;
-
-        default:
-            break;
-        }
+        lifespan = choiceOperations<T, ll::singleCircularLinkedList<T>>(userlist, choice);
     }
 }
 
@@ -710,12 +982,16 @@ int main()
 
     ll::singleLinkedList<int> s_user_list_int;
     ll::doubleLinkedList<int> d_user_list_int;
+    ll::singleCircularLinkedList<int> sc_user_list_int;
     ll::singleLinkedList<float> s_user_list_float;
     ll::doubleLinkedList<float> d_user_list_float;
+    ll::singleCircularLinkedList<float> sc_user_list_float;
     ll::singleLinkedList<char> s_user_list_char;
     ll::doubleLinkedList<char> d_user_list_char;
+    ll::singleCircularLinkedList<char> sc_user_list_char;
     ll::singleLinkedList<string> s_user_list_string;
     ll::doubleLinkedList<string> d_user_list_string;
+    ll::singleCircularLinkedList<string> sc_user_list_string;
 
     system("cls");
 
@@ -728,7 +1004,7 @@ int main()
     d_type = program.d_type();
 
     system("cls");
-    cout << "Linked list created successfully. Press any key- to continue to list operations...";
+    cout << "Linked list created successfully. Press any key to continue to list operations...";
     getch();
 
     switch (d_type)
@@ -737,11 +1013,15 @@ int main()
         switch (list_profile)
         {
         case 1:
-            single_list_life(s_user_list_int);
+            single_list_life(s_user_list_int, 1);
             break;
 
         case 2:
-            double_list_life(d_user_list_int);
+            double_list_life(d_user_list_int, 1);
+            break;
+
+        case 3:
+            single_circular_linked_list_life(sc_user_list_int, 1);
             break;
 
         default:
@@ -760,6 +1040,10 @@ int main()
             double_list_life(d_user_list_float);
             break;
 
+        case 3:
+            single_circular_linked_list_life(sc_user_list_float);
+            break;
+
         default:
             break;
         }
@@ -776,6 +1060,10 @@ int main()
             double_list_life(d_user_list_char);
             break;
 
+        case 3:
+            single_circular_linked_list_life(sc_user_list_char);
+            break;
+
         default:
             break;
         }
@@ -790,6 +1078,10 @@ int main()
 
         case 2:
             double_list_life(d_user_list_string);
+            break;
+
+        case 3:
+            single_circular_linked_list_life(sc_user_list_string);
             break;
 
         default:

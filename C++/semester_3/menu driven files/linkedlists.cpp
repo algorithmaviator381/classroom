@@ -9,6 +9,7 @@ using std::cout;
 using std::endl;
 using std::string;
 
+// structure for a single node in a singly linked list
 template <typename T>
 struct singleNode
 {
@@ -18,6 +19,7 @@ struct singleNode
     singleNode(const T value) : data(value), next(nullptr) {}
 };
 
+// structure for a single node in a doubly linked list
 template <typename T>
 struct doubleNode
 {
@@ -28,6 +30,7 @@ struct doubleNode
     doubleNode(const T value) : previous(nullptr), next(nullptr), data(value) {}
 };
 
+// structure for a single node in a singly circular linked list
 template <typename T>
 struct circularNode
 {
@@ -37,6 +40,7 @@ struct circularNode
     circularNode(const T value) : data(value), next(nullptr) {}
 };
 
+// Namespace for linked list operations
 namespace ll
 {
     template <typename T>
@@ -47,6 +51,15 @@ namespace ll
 
     public:
         singleLinkedList() : head(nullptr) {}
+        ~singleLinkedList()
+        {
+            while (head != nullptr)
+            {
+                singleNode<T> *temp = head;
+                head = head->next;
+                delete temp;
+            }
+        }
 
         bool is_empty()
         {
@@ -235,6 +248,15 @@ namespace ll
 
     public:
         doubleLinkedList() : head(nullptr) {}
+        ~doubleLinkedList()
+        {
+            while (head != nullptr)
+            {
+                doubleNode<T> *temp = head;
+                head = head->next;
+                delete temp;
+            }
+        }
 
         bool is_empty()
         {
@@ -327,12 +349,10 @@ namespace ll
 
             while (current != nullptr)
             {
-                // Swap the previous and next pointers of the current node
                 temp = current->previous;
                 current->previous = current->next;
                 current->next = temp;
 
-                // Move to the next node
                 current = current->previous;
             }
 
@@ -433,6 +453,21 @@ namespace ll
 
     public:
         singleCircularLinkedList() : head(nullptr) {}
+        ~singleCircularLinkedList()
+        {
+            if (head == nullptr)
+                return;
+
+            circularNode<T> *current = head;
+            circularNode<T> *temp = nullptr;
+
+            do
+            {
+                temp = current;
+                current = current->next;
+                delete temp;
+            } while (current != head);
+        }
 
         bool is_empty()
         {
@@ -638,6 +673,7 @@ namespace ll
 
 }
 
+// Code snippets for console window
 class menu
 {
 public:
@@ -726,6 +762,13 @@ public:
     }
 };
 
+// contains validate function that checks for a input datatype and returns a boolen value if
+// input data type is equal to the specified flag data type. Flags:
+// falg 1: Integer
+// falg 2: float
+// falg 3: characher
+// falg 4: std::string
+
 class inputValidations
 {
 public:
@@ -739,25 +782,28 @@ public:
 
         switch (flag)
         {
-        case 1: // Integer
+        case 1: // flag is integer
             if (isInteger(*static_cast<const std::string *>(data)))
             {
                 return true;
             }
             break;
-        case 2: // Float
+
+        case 2: // flag is float
             if (isFloat(*static_cast<const std::string *>(data)))
             {
                 return true;
             }
             break;
-        case 3: // Char
+
+        case 3: // flag is character
             if (isChar(*static_cast<const std::string *>(data)))
             {
                 return true;
             }
             break;
-        case 4: // String
+
+        case 4: // flag is string
             if (isString(*static_cast<const std::string *>(data)))
             {
                 return true;
@@ -768,7 +814,6 @@ public:
         return false;
     }
 
-    // Function to check if a string can be converted to an integer.
     bool isInteger(const std::string &str)
     {
         std::istringstream ss(str);
@@ -776,7 +821,6 @@ public:
         return (ss >> value) && ss.eof();
     }
 
-    // Function to check if a string can be converted to a float.
     bool isFloat(const std::string &str)
     {
         std::istringstream ss(str);
@@ -784,13 +828,11 @@ public:
         return (ss >> value) && ss.eof();
     }
 
-    // Function to check if a string contains a single character.
     bool isChar(const std::string &str)
     {
         return str.length() == 1;
     }
 
-    // Function to check if the input is a string.
     bool isString(const std::string &str)
     {
         return true;
@@ -798,7 +840,7 @@ public:
 };
 
 template <typename T, typename ListType>
-bool choiceOperations(ListType &userlist, int choice)
+bool generalListOperations(ListType &userlist, int choice)
 {
     T data, index;
 
@@ -837,7 +879,6 @@ bool choiceOperations(ListType &userlist, int choice)
         }
         else
         {
-
             cout << "Enter the element after which you want to insert another element: ";
             cin >> index;
             cout << "Enter data to insert: ";
@@ -868,6 +909,7 @@ bool choiceOperations(ListType &userlist, int choice)
         userlist.displaylist();
         getch();
         system("cls");
+        return true;
         break;
 
     case 6:
@@ -909,7 +951,6 @@ bool choiceOperations(ListType &userlist, int choice)
         break;
 
     case 0:
-        // lifespan = false;
         cout << "Exiting the application. Press any key to close window\n";
         cout << "\n\nMade with <3 by Aditya Godse";
         getch();
@@ -918,6 +959,8 @@ bool choiceOperations(ListType &userlist, int choice)
         break;
 
     default:
+        system("cls");
+        return true;
         break;
     }
 }
@@ -934,7 +977,7 @@ void single_list_life(ll::singleLinkedList<T> &userlist, int data_type = 1)
         int choice = program.operation();
         system("cls");
 
-        lifespan = choiceOperations<T, ll::singleLinkedList<T>>(userlist, choice); // Explicitly specify the template parameters here
+        lifespan = generalListOperations<T, ll::singleLinkedList<T>>(userlist, choice); // Explicitly specify the template parameters here
     }
 }
 
@@ -952,7 +995,7 @@ void double_list_life(ll::doubleLinkedList<T> &userlist, int data_type = 1)
         int choice = program.operation();
         system("cls");
 
-        lifespan = choiceOperations<T, ll::doubleLinkedList<T>>(userlist, choice);
+        lifespan = generalListOperations<T, ll::doubleLinkedList<T>>(userlist, choice);
     }
 }
 
@@ -970,7 +1013,7 @@ void single_circular_linked_list_life(ll::singleCircularLinkedList<T> &userlist,
         int choice = program.operation();
         system("cls");
 
-        lifespan = choiceOperations<T, ll::singleCircularLinkedList<T>>(userlist, choice);
+        lifespan = generalListOperations<T, ll::singleCircularLinkedList<T>>(userlist, choice);
     }
 }
 

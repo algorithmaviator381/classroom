@@ -6,7 +6,7 @@ public:
         std::cout << "Base class" << std::endl;
     }
 };
-
+ 
 class Derived : public Base {
 public:
     void display() override {

@@ -23,19 +23,21 @@ public:
 int main() {
     int n;
 
-    std::cout << "Enter the array size: ";
-    std::cin >> n;
+    // std::cout << "Enter the array size: ";
+    // std::cin >> n;
 
-    int* arr = new int[n];
+    n=4;
 
-    std::cout << "Enter array elements separated by space: ";
-    for (int i = 0; i < n; ++i) {
-        std::cin >> arr[i];
-    }
+    int arr[n] = {32,68,323,381};
 
-    int searchElement;
-    std::cout << "Enter the search element: ";
-    std::cin >> searchElement;
+    // std::cout << "Enter array elements separated by space: ";
+    // for (int i = 0; i < n; ++i) {
+    //     std::cin >> arr[i];
+    // }
+
+    int searchElement=32;
+    // std::cout << "Enter the search element: ";
+    // std::cin >> searchElement;
 
     int result = SearchAlgorithm<int>::LinearSearch(arr, searchElement, n);
 

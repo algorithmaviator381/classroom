@@ -6,30 +6,30 @@
 using namespace std;
 
 class Order {
-    public:
-        int id;
-        string productName;
-        double price;
-        int quantity;
-        string customerName;
+public:
+  int id;
+  string productName;
+  double price;
+  int quantity;
+  string customerName;
 
-        //for initialization
-        Order(){}
+  // for initialization
+  Order() {}
 
-        //Constructor overloading
-        Order(int id, string productName, double price, int quantity, string customerName)
-        {
-            this->id = id;
-            this->productName = productName;
-            this->price = price;
-            this->quantity = quantity;
-            this->customerName = customerName;
-        }
+  // Constructor overloading
+  Order(int id, string productName, double price, int quantity,
+        string customerName) {
+    this->id = id;
+    this->productName = productName;
+    this->price = price;
+    this->quantity = quantity;
+    this->customerName = customerName;
+  }
 
-        void displayAll(){
-            cout << id << " \t " << productName << " \t  " << price << "\t "<< quantity << "\t\t " << customerName << "\t" << endl;
-        }
+  void displayAll() {
+    cout << id << " \t " << productName << " \t  " << price << "\t " << quantity
+         << "\t\t " << customerName << "\t" << endl;
+  }
 };
-
 
 #endif

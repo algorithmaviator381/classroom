@@ -4,42 +4,38 @@
 
 using namespace std;
 
-void handleAction(int opt)
-{
-    switch (opt){
-        case 1:
-        {
-            runAdmin();
-            break;
-        }
-        case 0:
-        {
-            cout << "\n--------------------------------------------" << endl;
-			cout << "Please try again with valid username and password" << endl;
-			break;
-        }
-    }
+void handleAction(int opt) {
+  switch (opt) {
+  case 1: {
+    runAdmin();
+    break;
+  }
+  case 0: {
+    cout << "\n--------------------------------------------" << endl;
+    cout << "Please try again with valid username and password" << endl;
+    break;
+  }
+  }
 }
 
-int main()
-{
-    menu();
+int main() {
+  menu();
 
-    // username = "adimail";
-    // password = "sonchafa";
+  // username = "adimail";
+  // password = "sonchafa";
 
-    int opt = login(username, password);
+  int opt = login(username, password);
 
-    //Insert hardcoded data
-    
-    loadData();
+  // Insert hardcoded data
 
-    while(true){
-        handleAction( opt );
-    }
+  loadData();
 
-	cout << "\n--------------------------------------------" << endl;
-	cout << "> Thank You..." << endl;
+  while (true) {
+    handleAction(opt);
+  }
 
-	return 0;
+  cout << "\n--------------------------------------------" << endl;
+  cout << "> Thank You..." << endl;
+
+  return 0;
 }

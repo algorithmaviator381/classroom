@@ -3,16 +3,20 @@
 
 #include "oc.h"
 #include <iostream>
+#include <fstream>
+#include <ctime>
 
 using namespace std;
 
-struct Node {
+struct Node
+{
 public:
   Order order;
   Node *next;
 };
 
-class OrderLinkedList {
+class OrderLinkedList
+{
 public:
   Node *head, *tail;
   int size;
@@ -22,15 +26,19 @@ public:
   OrderLinkedList() : size(0), head(NULL){};
 
   void insertAtEnd(string productName, double price, int quantity,
-                   string customerName) {
+                   string customerName)
+  {
     Node *newNode = new Node;
     int id = 0;
 
     // Inserting into empty list
-    if (tail == NULL) {
+    if (tail == NULL)
+    {
       id = 1;
       head = tail = newNode;
-    } else {
+    }
+    else
+    {
       id = tail->order.id + 1;
       tail->next = newNode;
       tail = newNode;
@@ -41,16 +49,21 @@ public:
     size++;
   }
 
-  void display() {
-    if (size == 0) {
+  void display()
+  {
+    if (size == 0)
+    {
       cout << "List is empty!";
-    } else {
+    }
+    else
+    {
       Node *curr = head;
       cout << "ID \t Product Name \t Price \t Quantity \t Customer Name"
            << endl;
       cout << "````````````````````````````````````````````````````````````````"
               "``\n";
-      while (curr != nullptr) {
+      while (curr != nullptr)
+      {
         curr->order.displayAll();
         curr = curr->next;
       }
@@ -62,20 +75,28 @@ public:
 
   int getSize() { return size; }
 
-  void modifyOrder(int id, string name) {
+  void modifyOrder(int id, string name)
+  {
     Node *curr = head;
-    if (modifyMode == "productName") {
-      while (curr != NULL) {
-        if (curr->order.id == id) {
+    if (modifyMode == "productName")
+    {
+      while (curr != NULL)
+      {
+        if (curr->order.id == id)
+        {
           curr->order.productName = name;
           cout << "Order Successfully Updated" << endl;
           break;
         }
         curr = curr->next;
       }
-    } else if (modifyMode == "customerName") {
-      while (curr != NULL) {
-        if (curr->order.id == id) {
+    }
+    else if (modifyMode == "customerName")
+    {
+      while (curr != NULL)
+      {
+        if (curr->order.id == id)
+        {
           curr->order.customerName = name;
           cout << "Order Successfully Updated" << endl;
           break;
@@ -83,15 +104,19 @@ public:
         curr = curr->next;
       }
     }
-    if (curr == NULL) {
+    if (curr == NULL)
+    {
       cout << "Order ID Not Found!";
     }
   }
 
-  void modifyOrderPrice(int id, double price) {
+  void modifyOrderPrice(int id, double price)
+  {
     Node *curr = head;
-    while (curr != NULL) {
-      if (curr->order.id == id) {
+    while (curr != NULL)
+    {
+      if (curr->order.id == id)
+      {
         curr->order.price = price;
         cout << "Order Successfully Updated" << endl;
         break;
@@ -100,10 +125,13 @@ public:
     }
   }
 
-  void modifyOrderQuantity(int id, double quantity) {
+  void modifyOrderQuantity(int id, double quantity)
+  {
     Node *curr = head;
-    while (curr != NULL) {
-      if (curr->order.id == id) {
+    while (curr != NULL)
+    {
+      if (curr->order.id == id)
+      {
         curr->order.quantity = quantity;
         cout << "Order Successfully Updated" << endl;
         break;
@@ -112,14 +140,20 @@ public:
     }
   }
 
-  void deleteOrder(int id) {
+  void deleteOrder(int id)
+  {
     Node *prev = NULL;
     Node *curr = head;
-    while (curr != NULL) {
-      if (curr->order.id == id) {
-        if (prev != NULL) {
+    while (curr != NULL)
+    {
+      if (curr->order.id == id)
+      {
+        if (prev != NULL)
+        {
           prev->next = curr->next;
-        } else {
+        }
+        else
+        {
           head = curr->next;
         }
         delete curr;
@@ -130,17 +164,21 @@ public:
       prev = curr;
       curr = curr->next;
     }
-    if (curr == NULL) {
+    if (curr == NULL)
+    {
       cout << "ID Not Found!";
     }
   }
 
   void searchOrderById(int id) { displayOrder(id); }
 
-  void searchOrderByCustomerName(string customerName) {
+  void searchOrderByCustomerName(string customerName)
+  {
     Node *curr = head;
-    while (curr != NULL) {
-      if (curr->order.customerName == customerName) {
+    while (curr != NULL)
+    {
+      if (curr->order.customerName == customerName)
+      {
         displayOrder(curr->order.id);
         results++;
       }
@@ -149,10 +187,13 @@ public:
     cout << "Total results found: " << results;
   }
 
-  void searchOrderByProductName(string productName) {
+  void searchOrderByProductName(string productName)
+  {
     Node *curr = head;
-    while (curr != NULL) {
-      if (curr->order.productName == productName) {
+    while (curr != NULL)
+    {
+      if (curr->order.productName == productName)
+      {
         displayOrder(curr->order.id);
         results++;
       }
@@ -161,10 +202,13 @@ public:
     cout << "Total results found: " << results;
   }
 
-  void searchOrderByPriceRange(double priceBottom, double priceTop) {
+  void searchOrderByPriceRange(double priceBottom, double priceTop)
+  {
     Node *curr = head;
-    while (curr != NULL) {
-      if (curr->order.price >= priceBottom && curr->order.price <= priceTop) {
+    while (curr != NULL)
+    {
+      if (curr->order.price >= priceBottom && curr->order.price <= priceTop)
+      {
         curr->order.displayAll();
         results++;
       }
@@ -173,11 +217,14 @@ public:
     cout << "Total results found: " << results;
   }
 
-  void displayOrder(int id) {
+  void displayOrder(int id)
+  {
     Node *curr = head;
 
-    while (curr != NULL) {
-      if (curr->order.id == id) {
+    while (curr != NULL)
+    {
+      if (curr->order.id == id)
+      {
         cout << "\nProduct id           :" << curr->order.id;
         cout << "\nProduct Name         :" << curr->order.productName;
         cout << "\nProduct Prise        :" << curr->order.price;
@@ -189,11 +236,13 @@ public:
     }
   }
 
-  int getTotalPrise() {
+  int getTotalPrise()
+  {
     int result = 0;
 
     Node *curr = head;
-    while (curr != nullptr) {
+    while (curr != nullptr)
+    {
       result += curr->order.price * curr->order.quantity;
       curr = curr->next;
     }
@@ -201,7 +250,8 @@ public:
     return result;
   }
 
-  void generateReport() {
+  void generateReport()
+  {
     system("cls");
     cout << "********************* Purchase Order Report ********************* "
          << endl;
@@ -217,8 +267,45 @@ public:
     cout << "********************************************************* "
          << endl;
   }
+
+void generatePurchaseOrder() {
+    // Open a text file for writing
+    ofstream fout("PurchaseOrder.txt");
+
+    // Get the current date and time
+    time_t currentTime = time(0);
+    char* dt = ctime(&currentTime);
+
+    // Write the current date and time to the file
+    fout << "Order Date and Time: " << dt << "\n\n";
+    
+    // Write the header for the order details
+    fout << "ID       Product Name    Price   Quantity        Customer Name\n";
+    fout << "``````````````````````````````````````````````````````````````````\n";
+
+    // Iterate through the orders and write each order to the file
+    Node* curr = this->head;
+    while (curr != nullptr) {
+        fout << curr->order.id << " \t " << curr->order.productName << " \t  " << curr->order.price << "\t " << curr->order.quantity
+         << "\t\t " << curr->order.customerName << "\t" << endl; 
+        
+        curr = curr->next;
+    }
+
+    // Write the total number of items and total price to the file
+    fout << "\nTotal Items: " << this->getSize() << "\n";
+    fout << "Total Price: " << this->getTotalPrise() << " rupees\n";
+
+    // Close the file
+    fout.close();
+
+    cout << "Purchase order details have been saved to 'PurchaseOrder.txt'." << endl;
+}
+
 };
 
 OrderLinkedList orderLinkedList;
+
+#include <fstream>
 
 #endif

@@ -69,6 +69,7 @@ void runAdmin() {
   cout << "2) Search Order" << endl;
   cout << "3) Delete Order" << endl;
   cout << "4) Generate Report" << endl;
+  cout << "5) Generate PO (.txt file)" << endl;
 
   cout << endl;
   cout << "0) Exit" << endl;
@@ -290,6 +291,12 @@ void runAdmin() {
     break;
   }
 
+ // Generate po
+
+  case 5: {
+    orderLinkedList.generatePurchaseOrder();
+    break;
+  }
   // Exit
   case 0: {
     system("cls");

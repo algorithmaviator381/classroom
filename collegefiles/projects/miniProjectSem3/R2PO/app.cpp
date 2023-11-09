@@ -21,8 +21,6 @@ void handleAction(int opt) {
 int main() {
   menu();
 
-  // username = "adimail";
-  // password = "sonchafa";
 
   int opt = login(username, password);
 

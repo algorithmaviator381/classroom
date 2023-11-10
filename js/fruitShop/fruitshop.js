@@ -1,4 +1,4 @@
-const FruitShop = require("./events/fruitsShop")
+const FruitShop = require("./fruitsShopClass")
 
 const fruitShop = new FruitShop.FruitShop
 const drinkMachine = new FruitShop.DrinkMachine

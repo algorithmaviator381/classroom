@@ -6,7 +6,7 @@ class FruitShop extends EventEmitter{
         this.orderNumber = 0
     }
 
-    order(fruits = [], size = "full") {
+    order(fruits, size = "full") {
         this.orderNumber++;
         this.emit("order", fruits, size);
     }

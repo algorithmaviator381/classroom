@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------------------------
+Iffy_Books_Pocket_Wifi_Portal_Zine_print
+
+Here are some things you can do with a wi-fi captive portal using a Wemos D1 mini:
+    - Share an article/essay/political slogan with anyone who happens to be at the coffee shop.
+    - Promote an upcoming event without using social media.
+    - Share a poetry anthology with other commuters on your train.
+    - Share maps and information on a hiking trip without cell reception.
+    - Use several wi-fi boards to send a message using SSID names alone.
+
+A captive portal is a page displayed to the user when they connect to a wi-fi access point, often used to let the user authenticate before connecting to the internet. 
+You may have seen wi-fi captive portals in coffee shops and hotels.
+
+Knowing some HTML will help, but it isn’t necessary.
+
+You'll start by installing the Arduino IDE (integrated development environment), which is the application you'll use to program your Wemos D1 mini.
+
+End of text file
+----------------------------------------------------------------------------------------------------

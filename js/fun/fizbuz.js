@@ -26,7 +26,7 @@ function what(num) {
 rl.question("Enter a number for n: ", (answer) => {
   const n = parseInt(answer);
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i <= n; i++) {
     console.log(what(i));
   }
 

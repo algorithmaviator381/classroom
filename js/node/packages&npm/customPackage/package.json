@@ -1,0 +1,17 @@
+{
+  "name": "pkg",
+  "version": "1.0.0",
+  "description": "Greets you",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "greet"
+  ],
+  "author": "Aditya Godse",
+  "license": "ISC",
+  "dependencies": {
+    "upper-case": "^3.0.0"
+  }
+}

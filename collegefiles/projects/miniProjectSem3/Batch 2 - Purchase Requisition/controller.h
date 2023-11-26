@@ -5,7 +5,6 @@
 #include <iostream>
 #include <string>
 
-// #include "PO.h"
 #include "login.h"
 #include "purchaseOrder.h"
 
@@ -292,11 +291,20 @@ void runAdmin() {
   }
 
  // Generate po
-
   case 5: {
     orderLinkedList.generatePurchaseOrder();
+
+    system("cls");
+    cout << "\nPurchase order information saved in text file named PurchaseOrder.txt\n";
+    cout << "\nPress any key to go back to main menu...";
+    getch();
     break;
   }
+  
+  case 6: {
+    system("cls");
+  }
+  
   // Exit
   case 0: {
     system("cls");

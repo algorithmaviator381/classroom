@@ -21,10 +21,10 @@ void handleAction(int opt) {
 int main() {
   menu();
 
-
+  //Username: adimail
+  //Password: sonchafa
+  
   int opt = login(username, password);
-
-  // Insert hardcoded data
 
   loadData();
 

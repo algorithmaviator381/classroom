@@ -25,8 +25,7 @@ public:
 
   OrderLinkedList() : size(0), head(NULL){};
 
-  void insertAtEnd(string productName, double price, int quantity,
-                   string customerName)
+  void insertAtEnd(string productName, double price, int quantity, string customerName)
   {
     Node *newNode = new Node;
     int id = 0;
@@ -269,21 +268,16 @@ public:
   }
 
 void generatePurchaseOrder() {
-    // Open a text file for writing
     ofstream fout("PurchaseOrder.txt");
 
-    // Get the current date and time
     time_t currentTime = time(0);
     char* dt = ctime(&currentTime);
 
-    // Write the current date and time to the file
     fout << "Order Date and Time: " << dt << "\n\n";
     
-    // Write the header for the order details
     fout << "ID       Product Name    Price   Quantity        Customer Name\n";
     fout << "``````````````````````````````````````````````````````````````````\n";
 
-    // Iterate through the orders and write each order to the file
     Node* curr = this->head;
     while (curr != nullptr) {
         fout << curr->order.id << " \t " << curr->order.productName << " \t  " << curr->order.price << "\t " << curr->order.quantity
@@ -292,11 +286,9 @@ void generatePurchaseOrder() {
         curr = curr->next;
     }
 
-    // Write the total number of items and total price to the file
     fout << "\nTotal Items: " << this->getSize() << "\n";
     fout << "Total Price: " << this->getTotalPrise() << " rupees\n";
 
-    // Close the file
     fout.close();
 
     cout << "Purchase order details have been saved to 'PurchaseOrder.txt'." << endl;

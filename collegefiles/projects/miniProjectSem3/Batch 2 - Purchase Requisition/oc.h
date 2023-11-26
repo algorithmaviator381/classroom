@@ -13,10 +13,8 @@ public:
   int quantity;
   string customerName;
 
-  // for initialization
   Order() {}
 
-  // Constructor overloading
   Order(int id, string productName, double price, int quantity,
         string customerName) {
     this->id = id;

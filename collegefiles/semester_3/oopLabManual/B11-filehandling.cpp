@@ -1,16 +1,19 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 
 using namespace std;
 
 template <typename T>
-class OldMacDonald {
+class OldMacDonald
+{
 public:
-    OldMacDonald(const string& farmName, const string& animalName, const T& sound)
+    OldMacDonald(const string &farmName, const string &animalName, const T &sound)
         : farmName(farmName), animalName(animalName), sound(sound) {}
 
-    void sing() const {
+    void sing() const
+    {
         cout << farmName << " had a farm" << endl;
         cout << "Ee i ee i o" << endl;
         cout << "And on his farm he had some " << animalName << endl;
@@ -18,7 +21,8 @@ public:
         cout << "With a " << sound << "-" << sound << " here" << endl;
         cout << "And a " << sound << "-" << sound << " there" << endl;
         cout << "Here a " << sound << " there a " << sound << endl;
-        cout << "Everywhere " << sound << "-" << sound << endl << endl;
+        cout << "Everywhere " << sound << "-" << sound << endl
+             << endl;
     }
 
 private:
@@ -27,12 +31,14 @@ private:
     T sound;
 };
 
-class FarmAnimal {
+class FarmAnimal
+{
 public:
-    FarmAnimal(const string& name, const string& sound)
+    FarmAnimal(const string &name, const string &sound)
         : name(name), sound(sound) {}
 
-    virtual void sing() const {
+    virtual void sing() const
+    {
         OldMacDonald<string> poem("Old MacDonald", name, sound);
         poem.sing();
     }
@@ -42,42 +48,52 @@ protected:
     string sound;
 };
 
-class Cow : public FarmAnimal {
+class Cow : public FarmAnimal
+{
 public:
     Cow() : FarmAnimal("Cows", "moo") {}
 };
 
-class Chicken : public FarmAnimal {
+class Chicken : public FarmAnimal
+{
 public:
     Chicken() : FarmAnimal("Chicks", "cluck") {}
 };
 
-class Pig : public FarmAnimal {
+class Pig : public FarmAnimal
+{
 public:
     Pig() : FarmAnimal("Pigs", "oink") {}
 };
 
-class Duck : public FarmAnimal {
+class Duck : public FarmAnimal
+{
 public:
     Duck() : FarmAnimal("Ducks", "quack") {}
 };
 
-int main() {
-    vector<FarmAnimal*> animals;
+int main()
+{
+    ofstream MyFile("Assignment No 8.txt");
 
-    Cow cow;
-    Chicken chicken;
-    Pig pig;
-    Duck duck;
+    vector<FarmAnimal *> animals;
 
-    animals.push_back(&cow);
-    animals.push_back(&chicken);
-    animals.push_back(&pig);
-    animals.push_back(&duck);
+        Cow cow;
+        Chicken chicken;
+        Pig pig;
+        Duck duck;
 
-    for (const FarmAnimal* animal : animals) {
-        animal->sing();
-    }
+        animals.push_back(&cow);
+        animals.push_back(&chicken);
+        animals.push_back(&pig);
+        animals.push_back(&duck);
 
-    return 0;
+        for (const FarmAnimal *animal : animals)
+        {
+            animal->sing();
+        }
+
+        return 0;
+
+    MyFile.close();
 }

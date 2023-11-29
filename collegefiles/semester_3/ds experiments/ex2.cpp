@@ -107,7 +107,7 @@ int main()
 
     linkedlist mylist;
 
-    for (int i = 0; i < 20; i = i + 3)
+    for (int i = 0; i < 20; i+=3)
     {
         mylist.insertelement(i);
     }

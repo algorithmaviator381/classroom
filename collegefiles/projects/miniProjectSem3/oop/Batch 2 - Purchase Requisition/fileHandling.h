@@ -36,7 +36,7 @@ public:
   }
 
   void generatePurchaseOrder() {
-    ofstream fout("PurchaseOrder.txt");
+    ofstream fout ("PurchaseOrder.txt");
 
     time_t currentTime = time(0);
     char *dt = ctime(&currentTime);
@@ -44,8 +44,7 @@ public:
     fout << "Order Date and Time: " << dt << "\n\n";
 
     fout << "ID       Product Name    Price   Quantity        Customer Name\n";
-    fout << "``````````````````````````````````````````````````````````````````"
-            "\n";
+    fout << "``````````````````````````````````````````````````````````````````" "\n";
 
     Node *curr = this->head;
     while (curr != nullptr) {

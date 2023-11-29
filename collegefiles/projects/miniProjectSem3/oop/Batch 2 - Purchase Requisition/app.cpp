@@ -15,6 +15,8 @@ void handleAction(int opt) {
     cout << "Please try again with valid username and password" << endl;
     break;
   }
+  default:
+    break;
   }
 }
 

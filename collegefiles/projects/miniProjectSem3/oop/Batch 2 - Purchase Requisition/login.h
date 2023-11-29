@@ -14,7 +14,7 @@ int login(string user, string password)
 {
     int result;
     system("cls");
-    if (user == "adimail" && password == "sonchafa")
+    if (user == "user" && password == "user")
     {
         globalName = "Aditya";
         cout << "Login Successful as "<<globalName;

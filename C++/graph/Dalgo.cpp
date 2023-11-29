@@ -15,15 +15,13 @@ void print_weighted_adj_list(const vector<vector<pair<int, int>>>& graph_list) {
     }
 }
 
-void dijkstra_matrix(const vector<vector<int>>& graph, int start) {
-    int n = graph.size();
-    vector<int> distance(n, INT_MAX);
+void dijkstra_list(const vector<vector<pair<int, int>>>& graph_list, int start, vector<int>& distance, vector<int>& parent) {
+    int n = graph_list.size();
     vector<bool> visited(n, false);
-
-    distance[start] = 0;
 
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0, start});
+    distance[start] = 0;
 
     while (!pq.empty()) {
         int u = pq.top().second;
@@ -35,29 +33,36 @@ void dijkstra_matrix(const vector<vector<int>>& graph, int start) {
 
         visited[u] = true;
 
-        for (int v = 0; v < n; ++v) {
-            if (graph[u][v] > 0 && distance[v] > distance[u] + graph[u][v]) {
-                distance[v] = distance[u] + graph[u][v];
+        for (const auto& neighbor : graph_list[u]) {
+            int v = neighbor.first;
+            int weight = neighbor.second;
+
+            if (!visited[v] && distance[v] > distance[u] + weight) {
+                distance[v] = distance[u] + weight;
+                parent[v] = u;
                 pq.push({distance[v], v});
             }
         }
     }
+}
 
-    cout << "Shortest distances from node " << start << " using matrix:\n";
-    for (int i = 0; i < n; ++i) {
-        cout << "To node " << i << ": " << distance[i] << endl;
+void print_shortest_path(const vector<int>& parent, int start, int end) {
+    vector<int> path;
+    for (int at = end; at != -1; at = parent[at]) {
+        path.push_back(at);
     }
+
+    cout << "Shortest path from node " << start << " to " << end << ": ";
+    for (int i = path.size() - 1; i >= 0; --i) {
+        cout << path[i];
+        if (i > 0) {
+            cout << " -> ";
+        }
+    }
+    cout << endl;
 }
 
 int main() {
-    vector<vector<int>> graph_matrix = {
-        {0, 1, 0, 3, 10},
-        {1, 0, 5, 0, 0},
-        {0, 5, 0, 2, 1},
-        {3, 0, 2, 0, 6},
-        {10, 0, 0, 6, 0}
-        };
-
     vector<vector<pair<int, int>>> graph_list = {
         {},
         {{2, 1}, {4, 3}, {5, 10}},
@@ -66,7 +71,20 @@ int main() {
         {{1, 3}, {3, 2}, {5, 6}},
         {{4, 6}, {1, 10}, {3, 1}}};
 
-    dijkstra_matrix(graph_matrix, 0);
+    // print_weighted_adj_list(graph_list);
+
+    int start_node = 0;
+    int end_node = 4;
+
+    int n = graph_list.size();
+    vector<int> distance(n);
+    vector<int> parent(n, -1);
+
+    // dijkstra_list(graph_list, start_node, distance, parent);
+
+    cout << "Shortest distance from node " << start_node << " to " << end_node << ": " << distance[end_node] << endl;
+
+    print_shortest_path(parent, start_node, end_node);
 
     return 0;
 }

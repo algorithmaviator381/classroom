@@ -32,6 +32,7 @@ void displayStartupInfo(const startup& obj) {
     cout << "Name: " << obj.name << endl;
     cout << "Founders: \n";
     for (const string& founder : obj.founders) {
+        cout<<"\t";
         cout << "-" << founder << endl;
     };
 
@@ -41,6 +42,7 @@ void displayStartupInfo(const startup& obj) {
     cout << "Fundings: " << obj.fundings << endl;
     cout << "Tech Stack: \n";
     for (const string& tech : obj.techstack) {
+        cout<<"\t";
         cout << "-" << tech << endl;
     };
 }

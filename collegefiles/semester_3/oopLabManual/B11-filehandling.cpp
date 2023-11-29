@@ -9,20 +9,22 @@ template <typename T>
 class OldMacDonald
 {
 public:
+    // ofstream fout("Assignment No 11.txt");
+
     OldMacDonald(const string &farmName, const string &animalName, const T &sound)
         : farmName(farmName), animalName(animalName), sound(sound) {}
 
-    void sing() const
+    void sing(ostream &out) const
     {
-        cout << farmName << " had a farm" << endl;
-        cout << "Ee i ee i o" << endl;
-        cout << "And on his farm he had some " << animalName << endl;
-        cout << "E-I-E-I-O!" << endl;
-        cout << "With a " << sound << "-" << sound << " here" << endl;
-        cout << "And a " << sound << "-" << sound << " there" << endl;
-        cout << "Here a " << sound << " there a " << sound << endl;
-        cout << "Everywhere " << sound << "-" << sound << endl
-             << endl;
+        out << farmName << " had a farm" << endl;
+        out << "Ee i ee i o" << endl;
+        out << "And on his farm he had some " << animalName << endl;
+        out << "E-I-E-I-O!" << endl;
+        out << "With a " << sound << "-" << sound << " here" << endl;
+        out << "And a " << sound << "-" << sound << " there" << endl;
+        out << "Here a " << sound << " there a " << sound << endl;
+        out << "Everywhere " << sound << "-" << sound << endl
+            << endl;
     }
 
 private:
@@ -37,10 +39,10 @@ public:
     FarmAnimal(const string &name, const string &sound)
         : name(name), sound(sound) {}
 
-    virtual void sing() const
+    virtual void sing(ostream &out) const
     {
         OldMacDonald<string> poem("Old MacDonald", name, sound);
-        poem.sing();
+        poem.sing(out);
     }
 
 protected:
@@ -74,26 +76,26 @@ public:
 
 int main()
 {
-    ofstream MyFile("Assignment No 8.txt");
+    ofstream MyFile("B11-output.txt");
 
     vector<FarmAnimal *> animals;
 
-        Cow cow;
-        Chicken chicken;
-        Pig pig;
-        Duck duck;
+    Cow cow;
+    Chicken chicken;
+    Pig pig;
+    Duck duck;
 
-        animals.push_back(&cow);
-        animals.push_back(&chicken);
-        animals.push_back(&pig);
-        animals.push_back(&duck);
+    animals.push_back(&cow);
+    animals.push_back(&chicken);
+    animals.push_back(&pig);
+    animals.push_back(&duck);
 
-        for (const FarmAnimal *animal : animals)
-        {
-            animal->sing();
-        }
+    for (const FarmAnimal *animal : animals)
+    {
+        animal->sing(MyFile);
+    }
 
-        return 0;
+    return 0;
 
     MyFile.close();
 }

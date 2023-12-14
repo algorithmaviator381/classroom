@@ -1,21 +1,19 @@
-Order Date and Time: Tue Nov 28 10:54:43 2023
+Order Date and Time: Tue Dec 05 13:46:47 2023
 
 
 ID       Product Name    Price   Quantity        Customer Name
 ``````````````````````````````````````````````````````````````````
 1 	 Office Desk 	  250	 5		 AISSMS IOIT, Pune	
-2 	 Monitor 	  300	 120		 AISSMS IOIT, Pune	
+2 	 Monitor 	  300	 50		 AISSMS IOIT, Pune	
 3 	 Mouse   	  300	 120		 AISSMS IOIT, Pune	
-4 	 Keyboard 	  300	 120		 AISSMS IOIT, Pune	
-5 	 Office Chair 	  150	 160		 AISSMS IOIT, Pune	
+4 	 Keyboard 	  300	 100		 AISSMS IOIT, Pune	
 6 	 Whiteboard 	  100	 13		 AISSMS IOIT, Pune	
 7 	 Projector 	  800	 5		 AISSMS IOIT, Pune	
 8 	 Desk Lamp 	  40	 10		 AISSMS IOIT, Pune	
 9 	 Shelf   	  120	 20		 AISSMS IOIT, Pune	
 10 	 Printer 	  150	 8		 AISSMS IOIT, Pune	
 11 	 Printer Paper 	  10	 50		 AISSMS IOIT, Pune	
-12 	 Scanner 	  100	 12		 AISSMS IOIT, Pune	
 13 	 Marker   	  8	 30		 AISSMS IOIT, Pune	
 
-Total Items: 13
-Total Price: 144490 rupees
+Total Items: 11
+Total Price: 92290 rupees

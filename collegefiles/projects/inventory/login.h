@@ -27,12 +27,6 @@ int login(string user, string password)
         cout << "Login Successful as " << globalName;
         result = 1;
     }
-    else if (user == "ashutosh" && password == "topper")
-    {
-        globalName = "Ashutosh";
-        cout << "Login Successful as " << globalName;
-        result = 1;
-    }
     else if (user == "the_sakshimane" && password == "aarush")
     {
         globalName = "Sakshi Mane";
@@ -42,7 +36,6 @@ int login(string user, string password)
     else
     {
         cout << "Invalid Username or Password. Exiting the application";
-        cout << "\n\nPress any key to continue...";
         getch();
         exit(0);
     }

@@ -1,0 +1,27 @@
+product_id,product_name,unit_price,Quantity_in_hand,Quantity_sold,Inventory_value,revenue
+SM-1,Flower Pots,270,30,12,8100,3240
+SM-2,Yoga Mat,340,12,10,4080,3400
+SM-3,Sweater,1200,32,21,38400,25200
+SM-4,Yakult,80,20,13,1600,1040
+SM-5,Socks,190,45,26,8550,4940
+SM-6,Kulfi,25,32,68,800,1700
+SM-7,Badaam,560,32,68,17920,38080
+SM-8,Pop Corn,35,32,68,1120,2380
+SM-9,Umbrella,260,32,68,8320,17680
+SM-10,Pen,10,200,75,2000,750
+SM-11,Apple,50,100,25,5000,1250
+SM-12,Banana,20,75,15,1500,300
+SM-13,Orange,35,50,10,1750,350
+SM-14,Mango,75,25,5,1875,375
+SM-15,Water Colours,60,52,36,3120,2160
+SM-16,Poster Colours,120,58,44,6960,5280
+SM-17,Oil Pastles,310,47,24,14570,7440
+SM-18,Charcol Sticks,150,48,30,7200,4500
+SM-19,Drawing Pencils,130,37,41,4810,5330
+SM-20,Drawing Pen ,300,36,50,10800,15000
+SM-21,Acrylic colors,200,32,34,6400,6800
+SM-22,Tube Colors,150,24,49,3600,7350
+SM-24,Eraser,2,100,25,200,50
+SM-25,Notebook,50,50,15,2500,750
+SM-26,Paper Clip,5,250,100,1250,500
+SM-27,Stapler,150,25,5,3750,750

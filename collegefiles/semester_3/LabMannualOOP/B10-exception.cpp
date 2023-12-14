@@ -18,24 +18,23 @@ int main()
         getline(cin, input);
 
         std::stringstream ss(input);
-        int numerator, denominator;
-        float result;
+        float numerator, denominator, result;
 
         char slash;
         ss >> numerator >> slash >> denominator;
 
         if (denominator == 0)
         {
-            throw std::runtime_error("Error: Division by zero is not allowed");
+            throw denominator;
         }
 
         result = numerator / denominator;
 
         cout << "Result: " << result << endl;
     }
-    catch (const std::exception &e)
+    catch (float denominator)
     {
-        std::cerr << "Exception: " << e.what() << endl;
+        cout << "Cannot divide by zero" << endl;
     }
 
     return 0;

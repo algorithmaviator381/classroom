@@ -1,24 +1,24 @@
-Order Date and Time: Thu Dec 07 15:15:51 2023
+Order Date and Time: Thu Dec 14 10:42:53 2023
 
 
 ID       Product Name    Price   Quantity        Customer Name
 ``````````````````````````````````````````````````````````````````
-1 	 Milk 	  76	 1		 Summerhill	
-2 	 Mango 	  76	 4		 Summerhill	
-3 	 Apples 	  76	 4		 Summerhill	
-4 	 Watermelon 	  76	 4		 Summerhill	
-5 	 ButterScotch 	  76	 1		 Summerhill	
-6 	 Kulfi 	  76	 11		 Summerhill	
-7 	 Wispher 	  76	 10		 Summerhill	
-8 	 Badaam 	  76	 5		 Summerhill	
-9 	 Ink Pen 	  76	 10		 Summerhill	
-10 	 Sketchpen 	  76	 10		 Summerhill	
-11 	 Notebooks 	  76	 10		 Summerhill	
-12 	 Pop Corn 	  76	 2		 Summerhill	
-13 	 Umbrella 	  76	 1		 Summerhill	
-14 	 Cycle 	  76	 2		 Summerhill	
-15 	 Raisins 	  76	 2		 Summerhill	
-16 	 Kajoo 	  76	 3		 Summerhill	
+1 	 Low-fat milk 	  30	 1		 Summerhill	
+2 	 Alphonso 	  200	 4		 Summerhill	
+3 	 Apples 	  80	 4		 Summerhill	
+4 	 Watermelon 	  120	 4		 Summerhill	
+5 	 ButterScotch 	  50	 1		 Summerhill	
+6 	 Badaam Kulfi 	  150	 3		 Summerhill	
+7 	 Wispher 	  10	 10		 Summerhill	
+8 	 Badaam 	  350	 5		 Summerhill	
+9 	 Ink Pen 	  20	 10		 Summerhill	
+10 	 Sketchpen 	  18	 10		 Summerhill	
+11 	 Notebooks 	  40	 10		 Summerhill	
+12 	 Pop Corn 	  80	 2		 Summerhill	
+13 	 Umbrella 	  300	 1		 Summerhill	
+14 	 Hercules 	  1200	 2		 Summerhill	
+15 	 Raisins 	  450	 2		 Summerhill	
+16 	 Cashew 	  600	 3		 Summerhill	
 
 Total Items: 16
-Total Price: 6080 rupees
+Total Price: 10320 rupees

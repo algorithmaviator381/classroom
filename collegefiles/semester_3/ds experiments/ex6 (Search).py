@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SearchAlgorithms:
     def binary_search_2d(self, arr, target):
         """Search for the target element in a sorted 2D array using binary search."""
@@ -24,6 +25,7 @@ class SearchAlgorithms:
                     return i, j
         return -1, -1
 
+
 def main():
     search = SearchAlgorithms()
 
@@ -32,21 +34,24 @@ def main():
                     [7, 8, 9]])
 
     target = 5
-    
+
     print(arr)
 
     binary_result = search.binary_search_2d(arr, target)
     linear_result = search.linear_search_2d(arr, target)
 
     if binary_result != (-1, -1):
-        print(f"(Binary Search) Element {target} found at position {binary_result}")
+        print(
+            f"(Binary Search) Element {target} found at position {binary_result}")
     else:
         print("(Binary Search) Element not found in the array ")
 
     if linear_result != (-1, -1):
-        print(f"(Linear Search) Element {target} found at position {linear_result}")
+        print(
+            f"(Linear Search) Element {target} found at position {linear_result}")
     else:
         print("(Linear Search) Element not found in the array ")
+
 
 if __name__ == "__main__":
     main()

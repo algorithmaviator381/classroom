@@ -6,15 +6,14 @@ class AVLNode
 public:
     int key;
     int height;
-    AVLNode *left;
-    AVLNode *right;
+    AVLNode *left, *right;
 
     AVLNode(int k) : key(k), height(1), left(nullptr), right(nullptr) {}
 };
 
 class AVLTree
 {
-private:
+public:
     AVLNode *root;
 
     int height(AVLNode *node)
@@ -181,15 +180,12 @@ public:
 
 int main()
 {
-    AVLTree avlTree(45);
+    AVLTree avlTree(67);
 
-    avlTree.insert(13);
-    avlTree.insert(16);
-    avlTree.insert(8);
-    avlTree.insert(65);
-    avlTree.insert(55);
-    avlTree.insert(40);
-    avlTree.insert(19);
+    avlTree.insert(54);
+    avlTree.insert(88);
+    avlTree.insert(1);
+    avlTree.insert(53);
 
     cout << "Preorder traversal list   : ";
     avlTree.preorder();
@@ -198,14 +194,8 @@ int main()
     cout << "Inorder traversal list    : ";
     avlTree.inorder();
 
-    int elementToSearch;
-    cout << "\nEnter an element to search in the AVL tree: ";
-    cin >> elementToSearch;
-
-    if (avlTree.search(avlTree.getRoot(), elementToSearch) != nullptr)
-        cout << "Element " << elementToSearch << " is present in the AVL tree" << endl;
-    else
-        cout << "Element " << elementToSearch << " is not present in the AVL tree" << endl;
+    cout << "Root node: " << avlTree.root->key << endl;
+    cout << "balance factor of root: " << avlTree.balance(avlTree.root);
 
     return 0;
 }

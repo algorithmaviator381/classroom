@@ -1,7 +1,11 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::string;
+using std::to_string;
+using std::vector;
 
 class Solution
 {
@@ -13,6 +17,7 @@ public:
         for (int i = 1; i <= n; i++)
         {
             string output = "";
+
             if (i % 3 == 0)
             {
                 output += "Fizz";
@@ -20,6 +25,10 @@ public:
             if (i % 5 == 0)
             {
                 output += "Buzz";
+            }
+            if (output.empty())
+            {
+                output = to_string(i);
             }
 
             result.push_back(output);
@@ -37,7 +46,7 @@ int main()
 
     for (string i : res)
     {
-        cout << i << " ";
+        cout << i << endl;
     }
     cout << endl;
 

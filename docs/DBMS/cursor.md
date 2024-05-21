@@ -2,7 +2,6 @@
 layout: default
 title: Cursor
 parent: DBMS
-nav_order: 3
 ---
 
 

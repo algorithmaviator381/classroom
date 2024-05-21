@@ -2,7 +2,6 @@
 layout: default
 title: sql1
 parent: DBMS
-nav_order: 1
 ---
 
 Create a table named `Departments`

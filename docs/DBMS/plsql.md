@@ -2,7 +2,6 @@
 layout: default
 title: Cursor
 parent: plsql
-nav_order: 2
 ---
 
 ## Introduction

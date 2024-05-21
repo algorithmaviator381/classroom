@@ -1,8 +1,8 @@
 ---
 layout: default
-title: DBMS
-has_children: true
-permalink: /docs/sql1
+title: sql1
+parent: DBMS
+nav_order: 1
 ---
 
 Create a table named `Departments`

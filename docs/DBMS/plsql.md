@@ -1,8 +1,8 @@
 ---
 layout: default
-title: DBMS
-has_children: true
-permalink: /docs/plsql
+title: Cursor
+parent: plsql
+nav_order: 2
 ---
 
 ## Introduction

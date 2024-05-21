@@ -4,56 +4,6 @@ title: mongodb1
 parent: DBMS
 ---
 
-## Basic Commands
-
-1. show database
-```shell
-show databases
-```
-
-2. switch database
-```shell
-use <database_name>
-```
-
-3. show collections
-```shell
-show collections
-```
-
-4, Create collection
-```shell
-db.createCollection('NewCollection')
-```
-
-5. insert document
-```shell
-db.<collection_name>.insertOne({<document>})
-```
-
-```shell
-db.myCollection.insertMany([
-  { name: "Charlie", profession: "Doctor" },
-  { name: "Diana", hobby: "Photography" }
-])
-```
-
-6. delete collection
-
-```shell
-db.exam_collection.deleteOne({ name: "Alice" })
-```
-
-```shell
-db.<collection_name>.deleteMany({ name: "Alice" })
-```
-
-7. Drop collection (caution)
-
-```shell
-db.<collection_name>.drop()
-```
-
 ## Curd operations
 
 ```shell

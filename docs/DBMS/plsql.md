@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Cursor
-parent: plsql
+title: plsql
+parent: DBMS
 ---
 
 ## Introduction

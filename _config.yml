@@ -102,12 +102,12 @@ mermaid:
 heading_anchors: true
 
 # Aux links for the upper right navigation
-aux_links:
-  "classroom":
-    - "https://github.com/adimail/classroom"
+# aux_links:
+#   "classroom":
+#     - "https://github.com/adimail/classroom"
 
 # Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: false
+# aux_links_new_tab: false
 
 # Enable or disable the side/mobile menu globally
 # Nav menu can also be selectively enabled or disabled using page variables or the minimal layout
@@ -142,7 +142,7 @@ last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https:/
 
 
 # Footer "Edit this page on GitHub" link text
-gh_edit_link: true # show or hide edit this page link
+gh_edit_link: false # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub"
 gh_edit_repository: "https://github.com/adimail/classroom" # the github URL for your repo
 gh_edit_branch: "main" # the branch that your docs is served from

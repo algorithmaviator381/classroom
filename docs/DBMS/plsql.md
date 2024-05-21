@@ -22,12 +22,11 @@ CREATE TABLE Stud (
 ## Insert Data into the Table
 
 ```sql
-INSERT INTO Stud (Roll, Att, Status) VALUES (1, 80.00, NULL);
-INSERT INTO Stud (Roll, Att, Status) VALUES (2, 70.00, NULL);
-INSERT INTO Stud (Roll, Att, Status) VALUES (3, 90.00, NULL);
-INSERT INTO Stud (Roll, Att, Status) VALUES (4, 65.00, NULL);
-
-COMMIT;
+INSERT INTO Stud VALUES 
+    (1, 80.00, NULL),
+    (2, 70.00, NULL),
+    (3, 90.00, NULL),
+    (4, 65.00, NULL);
 ```
 
 ## PL/SQL block

@@ -4,6 +4,50 @@ title: sql1
 parent: DBMS
 ---
 
+## Types of SQL languages
+
+### 1. Data defination language (DDL)
+Purpose: DDL is used to define, modify, and manage the structure of database objects.
+
+- CREATE: Used to create new database objects such as tables, views, indexes, etc.
+- ALTER: Modifies the structure of existing database objects.
+- DROP: Deletes database objects.
+- TRUNCATE: Removes all records from a table while preserving its structure.
+- RENAME: Renames a database object.
+
+### 2. Data manipulation language (DML)
+Purpose: DML is used to manipulate data within database objects.
+
+- SELECT: Retrieves data from one or more tables.
+- INSERT: Adds new rows of data into a table.
+- UPDATE: Modifies existing data in a table.
+- DELETE: Removes rows of data from a table.
+
+### 3. Data control language (DCL)
+Purpose: DCL is used to control access to data within the database.
+
+- GRANT: Provides users with specific privileges to database objects.
+- REVOKE: Revokes previously granted privileges from users.
+
+### 4. Transaction control language (TCl)
+Purpose: TCL is used to manage transactions within the database.
+
+- COMMIT: Saves changes made during the current transaction.
+- ROLLBACK: Reverts changes made during the current transaction.
+- SAVEPOINT: Sets a point in the transaction to which you can later roll back.
+
+## SQL vs NoSQL
+
+| Aspect         | SQL Databases                 | NoSQL Databases                |
+|----------------|-------------------------------|--------------------------------|
+| Data Model     | Relational, organized in tables with predefined schemas | Non-relational, diverse data models such as document, key-value, columnar, or graph |
+| Schema         | Fixed schema                   | Dynamic schema                 |
+| Scalability    | Vertically scalable (scaling up by adding more resources to a single server) | Horizontally scalable (scaling out by adding more servers to a distributed system) |
+| Consistency    | Strong consistency, ACID transactions | Flexible consistency models, eventual consistency, often sacrificing strong consistency for scalability |
+| Query Language | Standardized SQL               | Not standardized; specific query languages or APIs depending on the database type |
+| Examples       | MySQL, PostgreSQL, Oracle Database, Sqlite | MongoDB, Cassandra, Redis, DynamoDB, Firebase     |
+
+
 Create a table named `Departments`
 
 ```sql

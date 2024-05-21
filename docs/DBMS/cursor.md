@@ -4,55 +4,80 @@ title: Cursor
 parent: DBMS
 ---
 
+Create `departments` table
 
 ```sql
--- Create the table Employees with the required fields
-CREATE TABLE employees (
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    department_id INT,
-    salary INT
+CREATE TABLE departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
 );
+```
 
--- Insert sample data into the Employees table
-INSERT INTO employees VALUES ('Ram', 'Sharma', 101, 5000);
+Create `employees` table
 
--- Enable output to display results
+```sql
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(100),
+    dept_id INT,
+    salary INT,
+    CONSTRAINT fk_dept_id FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+);
+```
+
+```sql
+INSERT INTO departments 
+VALUES 
+    (1, 'HR'),
+    (2, 'Finance'),
+    (3, 'Marketing');
+```
+
+```sql
+INSERT INTO employees 
+VALUES 
+    (1, 'Aditya Godse', 1, 50000),
+    (2, 'Sakshi Mane', 1, 55000),
+    (3, 'Jaydeep Tayshete', 2, 60000),
+    (4, 'Brad Pitt', 2, 62000),
+    (5, 'Anne Hathaway', 3, 58000),
+    (6, 'Tim Cook', 3, 59000),
+    (7, 'Sam Altman', 3, 79000);
+```
+
+```sql
 SET serveroutput ON;
+```
 
--- Start PL/SQL block
+### PL/SQL block to display the name, dept_id, and salary of the highest-paid employees by using a cursor
+
+```sql
 DECLARE
-    -- Declare variables to store employee information
-    v_emp_name employees.last_name%TYPE;
-    v_dep_id employees.department_id%TYPE;
+    v_emp_name employees.emp_name%TYPE;
+    v_dept_id employees.dept_id%TYPE;
     v_salary employees.salary%TYPE;
     
-    -- Declare a cursor to fetch the highest-paid employees
-    CURSOR highest_paid_cur IS
-        SELECT last_name, department_id, salary
+    CURSOR c_high_salary IS
+        SELECT emp_name, dept_id, salary
         FROM employees
-        WHERE salary = (SELECT MAX(salary) FROM employees);
+        WHERE (dept_id, salary) IN (
+            SELECT dept_id, MAX(salary)
+            FROM employees
+            GROUP BY dept_id
+        );
 BEGIN
-    -- Open cursor and fetch employee records
-    OPEN highest_paid_cur;
-    FETCH highest_paid_cur INTO v_emp_name, v_dep_id, v_salary;
-
-    -- Check if any record is fetched
-    IF highest_paid_cur%FOUND THEN
-        -- Display employee information
-        DBMS_OUTPUT.PUT_LINE('Name: ' || v_emp_name);
-        DBMS_OUTPUT.PUT_LINE('Department ID: ' || v_dep_id);
-        DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary);
-    ELSE
-        -- If no record found, display a message
-        DBMS_OUTPUT.PUT_LINE('No employee found.');
-    END IF;
-
-    -- Close cursor
-    CLOSE highest_paid_cur;
+    OPEN c_high_salary;
+    LOOP
+        FETCH c_high_salary INTO v_emp_name, v_dept_id, v_salary;
+        EXIT WHEN c_high_salary%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Name: ' || v_emp_name || ', Department ID: ' || v_dept_id || ', Salary: ' || v_salary);
+    END LOOP;
+    CLOSE c_high_salary;
 END;
 /
 ```
+
+This PL/SQL block will display the name, department ID, and salary of the highest-paid employees in each department.
 
 ```mermaid
 flowchart TD

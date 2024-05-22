@@ -1,8 +1,10 @@
 ---
 layout: default
-title: Flight Scheduling with Greedy Algorithms
+title: Flight Scheduling
 parent: AI
 ---
+
+#  Flight Scheduling with Greedy Algorithms
 
 This code performs the following steps:
 
@@ -124,7 +126,7 @@ print(overlapedflights_df)
 
 
 ---
-## Here is the entire code for you to copy paste
+## Here is the entire code for you to try
 
 ```python
 import pandas as pd
@@ -185,6 +187,7 @@ print(overlapedflights_df)
 Output:
 
 Scheduled flights:
+
 | Flight Number | Departure Time | Arrival Time | Maintenance Time |
 |---------------|----------------|--------------|------------------|
 | flight1       | 08:00          | 10:30        | 30               |
@@ -192,6 +195,7 @@ Scheduled flights:
 | flight5       | 20:00          | 22:30        | 25               |
 
 Delayed Flights due to overlap
+
 | Flight Number | Departure Time | Arrival Time | Maintenance Time |
 |---------------|----------------|--------------|------------------|
 | flight2       | 11:00          | 13:30        | 45               |

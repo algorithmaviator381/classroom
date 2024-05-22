@@ -6,7 +6,7 @@ parent: AI
 
 # N-Queens Problem
 
-Our goal is to develop a solution to place N chess queens on an N×N chessboard so that no two queens threaten each other.
+> Our goal is to develop a solution to place N chess queens on an N×N chessboard so that no two queens threaten each other.
 
 ![problem](https://miro.medium.com/v2/resize:fit:457/0*ScgscJU4q5zWf6lk.png)
 
@@ -33,7 +33,7 @@ graph TD;
 ```
 
 ---
-## Here is the entire code for you to copy paste
+## Here is the entire code for you to try
 
 ```python
 def IsSafe(board, row, col):

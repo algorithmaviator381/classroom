@@ -6,7 +6,7 @@ parent: AI
 
 # 8-Puzzle Problem
 
-The 8-puzzle is a sliding puzzle consisting of eight tiles, numbered 1 through 8, placed in a 3x3 grid with one empty space. The goal is to rearrange the tiles from a given initial configuration to a goal configuration by sliding tiles into the empty space.
+> The 8-puzzle is a sliding puzzle consisting of eight tiles, numbered 1 through 8, placed in a 3x3 grid with one empty space. The goal is to rearrange the tiles from a given initial configuration to a goal configuration by sliding tiles into the empty space.
 
 ![puzzle](https://www.aiai.ed.ac.uk/~gwickler/images/8-puzzle-states.png)
 
@@ -159,7 +159,7 @@ for soln in solution:
 
 
 ---
-## Here is the entire code for you to copy paste
+## Here is the entire code for you to try
 
 ```python
 class PuzzleState:

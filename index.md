@@ -2,12 +2,12 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "aditya converted the codes from his college assignments into a web blog and use mermaid charts to explain them because he couldn't stand the way his teachers at his college were doing that job."
 permalink: /
 ---
 
 # Focus on writing good code
 
-Navigate the content from the sidebar. The search also works prety well. I hope you find what you are looking for. 
+Navigate the content from the sidebar. The search also works pretty well. I hope you find what you are looking for. 
 
 Cheers.

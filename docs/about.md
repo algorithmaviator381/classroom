@@ -8,6 +8,6 @@ nav_order: 99
 
 hey, i am Aditya Godse 🍉, an undergrad engineering student who loves computers and codes for fun.
 
-i like to call this place classroom. this is where i, as a software engineer practiced programming. specifically, this is where i started learning about the programming languages theories and implementations domain. i would like to share a part of my classroom with you.
+i like to call this place classroom. this is where i, as a software engineer practiced programming. this is not maintained regularly as intended but I keep this repo open for times when I want an organized collection of something to share with other people as a learning resource. i would like to share a part of my classroom with you.
 
-more on [adimail.github.io](https://adimail.github.io/)
+more about me on [adimail.github.io](https://adimail.github.io/)

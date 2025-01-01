@@ -8,6 +8,9 @@ permalink: /
 
 # Focus on writing good code
 
-Navigate the content from the sidebar. The search also works pretty well. I hope you find what you are looking for. 
+Navigate the content from the sidebar. The search also works pretty well. I hope you find what you are looking for. This is my attempt at learning the stings from a contextual perspective and applying my knowledge to build things.
 
 Cheers.
+
+---
+Here is a collection of [MLOps and DL Projects](https://adimail.github.io/mlops/) with demos, notebooks and code, all publicly available.
